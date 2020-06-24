@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <Folder Include="Form\Services\" />
-    <Folder Include="Form\Repositories\" />
   </ItemGroup>
 
   <ItemGroup>

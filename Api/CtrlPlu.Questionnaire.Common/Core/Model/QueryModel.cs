@@ -19,5 +19,7 @@
         public string SortDirection { get; set; }
 
         public string SearchTerm { get; set; }
+
+        public int Skip => (CurrentPage - 1) * PageSize;
     }
 }

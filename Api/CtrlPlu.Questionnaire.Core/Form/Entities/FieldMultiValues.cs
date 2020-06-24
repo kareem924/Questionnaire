@@ -5,7 +5,7 @@ using CtrlPlu.Questionnaire.Common.Core.Domain;
 
 namespace CtrlPlu.Questionnaire.Core.Form.Entities
 {
-    public class FieldMutliValues : BaseEntity
+    public class FieldMultiValues : BaseEntity
     {
         public Field Type { get; private set; }
 
