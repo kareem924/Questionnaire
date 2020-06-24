@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using CtrlPlu.Questionnaire.Common.Core.Domain;
 
 namespace CtrlPlu.Questionnaire.Core.Form.Entities
 {
     public class Form : AuditableEntity, IAggregateRoot
     {
-        private  List<Section> _sections = new List<Section>();
+        private List<Section> _sections = new List<Section>();
 
         public string Title { get; private set; }
 
@@ -20,7 +19,7 @@ namespace CtrlPlu.Questionnaire.Core.Form.Entities
         {
         }
 
-        public Form(string title,string description)
+        public Form(string title, string description)
         {
             Title = title ?? throw new ArgumentNullException(nameof(title));
             Description = description;

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using CtrlPlu.Questionnaire.Common.Core.Domain;
+﻿using CtrlPlu.Questionnaire.Common.Core.Domain;
 
 namespace CtrlPlu.Questionnaire.Core.Form.Entities
 {

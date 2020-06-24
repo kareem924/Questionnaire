@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace CtrlPlu.Questionnaire.Core.Form.Enums
+﻿namespace CtrlPlu.Questionnaire.Core.Form.Enums
 {
     public enum FieldType
     {

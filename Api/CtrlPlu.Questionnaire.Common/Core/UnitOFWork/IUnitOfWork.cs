@@ -9,9 +9,9 @@ namespace CtrlPlu.Questionnaire.Common.Core.UnitOFWork
     {
         SaveResult SaveResult { get; }
 
-        Task<int> Save();
-
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default(CancellationToken));
+
+        Task<bool> SaveEntitiesAsync(CancellationToken cancellationToken = default(CancellationToken));
 
         void AddError(int code, string error);
 

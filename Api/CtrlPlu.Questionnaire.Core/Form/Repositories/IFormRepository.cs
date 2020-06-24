@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using CtrlPlu.Questionnaire.Common.Core.Repository;
+﻿using CtrlPlu.Questionnaire.Common.Core.Repository;
 
 namespace CtrlPlu.Questionnaire.Core.Form.Repositories
 {

@@ -8,11 +8,9 @@ namespace CtrlPlu.Questionnaire.Core.Form.Entities
     {
         private List<FieldMultiValues> _multiValues = new List<FieldMultiValues>();
 
-        public Form Form { get; set; }
-
         public Field Field { get; set; }
 
-        public string value { get; set; }
+        public string Value { get; set; }
 
         public IReadOnlyCollection<FieldMultiValues> MultiValues => _multiValues.AsReadOnly();
 
@@ -20,11 +18,10 @@ namespace CtrlPlu.Questionnaire.Core.Form.Entities
         {
         }
 
-        public Submission(Form form, Field field, string value)
+        public Submission(Field field, string value)
         {
-            Form = form ?? throw new ArgumentNullException(nameof(form));
             Field = field ?? throw new ArgumentNullException(nameof(field));
-            value = !string.IsNullOrWhiteSpace(value)
+            Value = !string.IsNullOrWhiteSpace(value)
                 ? value
                 : throw new ArgumentNullException(nameof(value));
         }

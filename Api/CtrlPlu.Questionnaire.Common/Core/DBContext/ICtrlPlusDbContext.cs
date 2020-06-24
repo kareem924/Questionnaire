@@ -12,13 +12,9 @@ namespace CtrlPlu.Questionnaire.Common.Core.DBContext
 
         int SaveChanges();
 
-        Task<int> SaveChangesAsync();
-
         Task<int> SaveChangesAsync(System.Threading.CancellationToken cancellationToken);
 
         ChangeTracker ChangeTracker { get; }
-
-        EntityEntry Entry<TEntity>(object entity) where TEntity : class;
 
         DbSet<TEntity> Set<TEntity>() where TEntity : class;
 
