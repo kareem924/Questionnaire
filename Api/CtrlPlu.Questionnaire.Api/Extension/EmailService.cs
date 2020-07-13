@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Api.Extensions
+namespace CtrlPlu.Questionnaire.Api.Extension
 {
     public static class EmailService
     {

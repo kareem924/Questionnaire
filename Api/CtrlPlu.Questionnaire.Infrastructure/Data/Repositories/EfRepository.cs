@@ -1,80 +1,84 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using CtrlPlu.Questionnaire.Common.Core.Domain;
+﻿using CtrlPlu.Questionnaire.Common.Core.Domain;
 using CtrlPlu.Questionnaire.Common.Core.Model;
 using CtrlPlu.Questionnaire.Common.Core.Repository;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
+using System.Threading.Tasks;
 
 namespace CtrlPlu.Questionnaire.Infrastructure.Data.Repositories
 {
-    public abstract class EfRepository<T> : ISpecificationRepository<T> where T : class, IAggregateRoot
+    public abstract class EfRepository<TEntity> : ISpecificationRepository<TEntity> where TEntity : class, IAggregateRoot
     {
         private readonly QuestionnaireDbContext _dbContext;
+        protected DbSet<TEntity> DbSet { get; }
 
         protected EfRepository(QuestionnaireDbContext dbContext)
         {
             _dbContext = dbContext;
+            DbSet = dbContext.Set<TEntity>();
         }
 
-        public T GetById(object id)
+        public TEntity GetById(object id)
         {
-            return _dbContext.Set<T>().Find(id);
+            return DbSet.Find(id);
 
         }
 
-        public async Task<T> GetByIdAsync(object id)
+        public async Task<TEntity> GetByIdAsync(object id)
         {
-            return await _dbContext.Set<T>().FindAsync(id);
+            return await DbSet.FindAsync(id);
         }
 
-        public T Find(ISpecification<T> spec)
+        public TEntity Find(ISpecification<TEntity> spec)
         {
             return ApplySpecification(spec).SingleOrDefault();
         }
 
-        public async Task<T> FindAsync(ISpecification<T> specification)
+        public async Task<TEntity> FindAsync(ISpecification<TEntity> specification)
         {
             return await ApplySpecification(specification).SingleOrDefaultAsync();
         }
 
-        public ICollection<T> FindAll(ISpecification<T> specification)
+        public ICollection<TEntity> FindAll(ISpecification<TEntity> specification)
         {
             return ApplySpecification(specification).ToList();
         }
 
-        public async Task<ICollection<T>> FindAllAsync(ISpecification<T> specification)
+        public async Task<ICollection<TEntity>> FindAllAsync(ISpecification<TEntity> specification)
         {
             return await ApplySpecification(specification).ToListAsync();
         }
 
-        public T Add(T entity)
+        public TEntity Add(TEntity entity)
         {
-            _dbContext.Set<T>().Add(entity);
+            DbSet.Add(entity);
             return entity;
         }
 
-        public async Task<T> AddAsync(T entity)
+        public async Task<TEntity> AddAsync(TEntity entity)
         {
-            await _dbContext.Set<T>().AddAsync(entity);
+            await DbSet.AddAsync(entity);
             return entity;
         }
 
-        public IEnumerable<T> AddRange(IReadOnlyCollection<T> entityList)
+        public IEnumerable<TEntity> AddRange(IReadOnlyCollection<TEntity> entityList)
         {
-            _dbContext.Set<T>().AddRange(entityList);
+            DbSet.AddRange(entityList);
             return entityList;
         }
 
-        public async Task<IEnumerable<T>> AddRangeAsync(IReadOnlyCollection<T> entityList)
+        public async Task<IEnumerable<TEntity>> AddRangeAsync(IReadOnlyCollection<TEntity> entityList)
         {
-            await _dbContext.Set<T>().AddRangeAsync(entityList);
+            await DbSet.AddRangeAsync(entityList);
             return entityList;
         }
 
-        public T Update(T updated, object key)
+        public TEntity Update(TEntity updated, object key)
         {
-            T existing = _dbContext.Set<T>().Find(key);
+            TEntity existing = DbSet.Find(key);
             if (existing != null)
             {
                 _dbContext.Entry(existing).CurrentValues.SetValues(updated);
@@ -82,42 +86,63 @@ namespace CtrlPlu.Questionnaire.Infrastructure.Data.Repositories
             return existing;
         }
 
-        public Task<T> UpdateAsync(T updated, object key)
+        public Task<TEntity> UpdateAsync(TEntity updated, object key)
         {
 
             _dbContext.Entry(updated).State = EntityState.Modified;
             return Task.FromResult(updated);
         }
 
-        public void Delete(T entity)
+        public void Delete(TEntity entity)
         {
-            _dbContext.Set<T>().Remove(entity);
+            DbSet.Remove(entity);
         }
 
-        public void Attach(T entity)
+        public void Attach(TEntity entity)
         {
-            _dbContext.Set<T>().Attach(entity);
+            DbSet.Attach(entity);
         }
 
-        public int Count(ISpecification<T> spec)
+        public int Count(ISpecification<TEntity> spec)
         {
             return ApplySpecification(spec).Count();
         }
 
-        public async Task<int> CountAsync(ISpecification<T> spec)
+        public async Task<bool> AnyAsync(ISpecification<TEntity> spec)
+        {
+            return await ApplySpecification(spec).AnyAsync();
+        }
+
+        public async Task<bool> AnyAsync(Expression<Func<TEntity, bool>> spec)
+        {
+            return await DbSet.AsQueryable().AnyAsync(spec);
+        }
+
+        public async Task<int> CountAsync(ISpecification<TEntity> spec)
         {
             return await ApplySpecification(spec).CountAsync();
         }
 
-        private IQueryable<T> ApplySpecification(ISpecification<T> spec)
+        public async Task<TEntity> GetSingleOrDefaultAsync(ISpecification<TEntity> spec)
         {
-            return SpecificationEvaluator<T>.GetQuery(_dbContext.Set<T>().AsQueryable(), spec);
+            return await ApplySpecification(spec).SingleOrDefaultAsync();
         }
 
-        public async Task<PagedResult<T,IVM>> GetAllPagedAsync(ISpecification<T> specification, QueryModel query)
+        public async Task<TEntity> GetFirstOrDefaultAsync(ISpecification<TEntity> spec)
+        {
+            return await ApplySpecification(spec).FirstOrDefaultAsync();
+        }
+
+        private IQueryable<TEntity> ApplySpecification(ISpecification<TEntity> spec)
+        {
+            return SpecificationEvaluator<TEntity>.GetQuery(DbSet.AsQueryable(), spec);
+        }
+
+        public Task<PagedResult<TEntity, IVM>> GetAllPagedAsync(ISpecification<TEntity> specification, QueryModel query)
         {
             var data = ApplySpecification(specification);
-            return new PagedResult<T, IVM>(data,query.CurrentPage,query.PageSize,null);
+            return Task
+                .FromResult(new PagedResult<TEntity, IVM>(data, query.CurrentPage, query.PageSize, null));
         }
     }
 }

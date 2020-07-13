@@ -48,17 +48,12 @@ namespace CtrlPlu.Questionnaire.Infrastructure.Migrations
                     b.Property<int>("SectionId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("SectionId1")
-                        .HasColumnType("int");
-
                     b.Property<int>("Type")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("SectionId");
-
-                    b.HasIndex("SectionId1");
 
                     b.ToTable("Field");
                 });
@@ -213,10 +208,6 @@ namespace CtrlPlu.Questionnaire.Infrastructure.Migrations
                         .HasForeignKey("SectionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("CtrlPlu.Questionnaire.Core.Form.Entities.Section", "Section")
-                        .WithMany()
-                        .HasForeignKey("SectionId1");
                 });
 
             modelBuilder.Entity("CtrlPlu.Questionnaire.Core.Form.Entities.FieldMultiValues", b =>

@@ -1,11 +1,11 @@
-﻿using CtrlPlu.Questionnaire.Common.Core.Model;
+﻿using System.Text;
+using CtrlPlu.Questionnaire.Common.Core.Model;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
-using System.Text;
 
-namespace Api.Extensions
+namespace CtrlPlu.Questionnaire.Api.Extension
 {
     public static class JWTService
     {

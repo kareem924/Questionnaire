@@ -1,0 +1,34 @@
+@import './themes';
+
+@mixin nb-overrides() {
+  nb-select.size-medium button {
+    padding: 0.4375rem 2.2rem 0.4375rem 1.125rem !important;
+
+    nb-icon {
+      right: 0.41rem !important;
+    }
+  }
+  //fix-rtl margin for icons
+  nb-menu{
+    .menu-item{
+      .menu-icon{
+        margin:0 .5rem;
+      }
+    }
+  }
+  // hide horizontal menu all themes except hm-theme itself ofcourse..  
+  nb-menu-custom{
+    display: none;
+  }
+  *{
+    outline: none;
+  }
+  .HM-menu{
+    display: flex;
+    justify-content: space-between;
+    width: 100%
+  }
+  .hm-vip{
+    display: none;
+  }
+}

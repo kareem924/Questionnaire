@@ -60,7 +60,6 @@ namespace CtrlPlu.Questionnaire.Infrastructure.Migrations
                     PlaceHolder = table.Column<string>(nullable: true),
                     Label = table.Column<string>(nullable: false),
                     InputMask = table.Column<string>(nullable: true),
-                    SectionId1 = table.Column<int>(nullable: true),
                     SectionId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -72,12 +71,6 @@ namespace CtrlPlu.Questionnaire.Infrastructure.Migrations
                         principalTable: "Section",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Field_Section_SectionId1",
-                        column: x => x.SectionId1,
-                        principalTable: "Section",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -133,11 +126,6 @@ namespace CtrlPlu.Questionnaire.Infrastructure.Migrations
                 name: "IX_Field_SectionId",
                 table: "Field",
                 column: "SectionId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Field_SectionId1",
-                table: "Field",
-                column: "SectionId1");
 
             migrationBuilder.CreateIndex(
                 name: "IX_FieldMultiValues_SubmissionId",

@@ -1,45 +1,55 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using CtrlPlu.Questionnaire.Common.Core.Domain;
 using CtrlPlu.Questionnaire.Common.Core.Model;
 
 namespace CtrlPlu.Questionnaire.Common.Core.Repository
 {
-    public interface ISpecificationRepository<T> where T : class, IAggregateRoot
+    public interface ISpecificationRepository<TEntity> where TEntity : class, IAggregateRoot
 
     {
-        T GetById(object id);
+        TEntity GetById(object id);
 
-        Task<T> GetByIdAsync(object id);
+        Task<TEntity> GetByIdAsync(object id);
 
-        T Find(ISpecification<T> spec);
+        TEntity Find(ISpecification<TEntity> spec);
 
-        Task<T> FindAsync(ISpecification<T> specification);
+        Task<TEntity> FindAsync(ISpecification<TEntity> specification);
 
-        ICollection<T> FindAll(ISpecification<T> specification);
+        ICollection<TEntity> FindAll(ISpecification<TEntity> specification);
 
-        Task<ICollection<T>> FindAllAsync(ISpecification<T> specification);
+        Task<ICollection<TEntity>> FindAllAsync(ISpecification<TEntity> specification);
 
-        Task<PagedResult<T, IVM>> GetAllPagedAsync(ISpecification<T> specification, QueryModel query);
+        Task<PagedResult<TEntity, IVM>> GetAllPagedAsync(ISpecification<TEntity> specification, QueryModel query);
 
-        T Add(T entity);
+        TEntity Add(TEntity entity);
 
-        Task<T> AddAsync(T entity);
+        Task<TEntity> AddAsync(TEntity entity);
 
-        IEnumerable<T> AddRange(IReadOnlyCollection<T> entityList);
+        IEnumerable<TEntity> AddRange(IReadOnlyCollection<TEntity> entityList);
 
-        Task<IEnumerable<T>> AddRangeAsync(IReadOnlyCollection<T> entityList);
+        Task<IEnumerable<TEntity>> AddRangeAsync(IReadOnlyCollection<TEntity> entityList);
 
-        T Update(T updated, object key);
+        TEntity Update(TEntity updated, object key);
 
-        Task<T> UpdateAsync(T updated, object key);
+        Task<TEntity> UpdateAsync(TEntity updated, object key);
 
-        void Delete(T entity);
+        void Delete(TEntity entity);
 
-        void Attach(T entity);
+        void Attach(TEntity entity);
 
-        int Count(ISpecification<T> spec);
+        int Count(ISpecification<TEntity> spec);
 
-        Task<int> CountAsync(ISpecification<T> spec);
+        Task<bool> AnyAsync(ISpecification<TEntity> spec);
+
+        Task<bool> AnyAsync(Expression<Func<TEntity, bool>> spec);
+
+        Task<int> CountAsync(ISpecification<TEntity> spec);
+
+        Task<TEntity> GetSingleOrDefaultAsync(ISpecification<TEntity> spec);
+
+        Task<TEntity> GetFirstOrDefaultAsync(ISpecification<TEntity> spec);
     }
 }

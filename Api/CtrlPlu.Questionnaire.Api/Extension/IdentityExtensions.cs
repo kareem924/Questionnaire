@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Security.Claims;
 
-namespace Api.Extensions
+namespace CtrlPlu.Questionnaire.Api.Extension
 {
     public static class IdentityExtensions
     {

@@ -1,0 +1,966 @@
+@import "./themes.scss";
+// @include nb-install-component(){
+
+//VBM
+//  start custom themes
+//main vertical blue menu css theme.
+// .vbm-header
+// .vbm-sidebar
+// .vbm-content
+// .vbm-footer
+// change layout
+//general css
+
+//fix menu lot items link issue with submenu
+.nb-theme-VBM .main-container-fixed {
+  position: relative !important;
+}
+.nb-theme-VBM nb-layout-header.fixed {
+  z-index: 99995 !important;
+}
+.nb-theme-VBM .HM-menu .hm-vip{
+  display:none !important;
+}
+//link color
+.nb-theme-VBM a {
+  color: nb-theme(color-primary-400) !important;
+}
+
+//header
+body.nb-theme-VBM nb-layout-header nav {
+  background: nb-theme(color-primary-100);
+  box-shadow: none;
+}
+body.nb-theme-VBM .empty {
+  width: 127px !important;
+}
+body.nb-theme-VBM .empty img{
+  width: 100% !important;
+}
+body.nb-theme-VBM nb-layout-header nav a,
+body.nb-theme-VBM nb-user .user-name {
+  color: nb-theme(color-primary-400);
+}
+
+body.nb-theme-VBM nb-layout-header nav a:hover {
+  color: nb-theme(color-primary-400);
+}
+
+body.nb-theme-VBM nb-action nb-icon {
+  color: nb-theme(color-primary-400);
+}
+
+body.nb-theme-VBM .header-container .sidebar-toggle {
+  color: nb-theme(color-primary-500) !important;
+}
+
+//change theme header design all themes event
+body.nb-theme-VBM .visibly,
+body.nb-theme-default .vbm-header,
+body.nb-theme-corporate .vbm-header,
+body.nb-theme-dark .vbm-header,
+body.nb-theme-cosmic .vbm-header {
+  display: none !important;
+}
+
+body.nb-theme-VBM .vbm-header,
+body.nb-theme-default .visibly,
+body.nb-theme-corporate .visibly,
+body.nb-theme-dark .visibly,
+body.nb-theme-cosmic .visibly {
+  display: flex;
+}
+
+//remove right border
+body.nb-theme-VBM .logo {
+  color: nb-theme(coloe-primary-100) !important;
+  padding: 0 !important;
+  border: none !important;
+  width: 100%;
+}
+
+//dropdown navigation themes style
+body.nb-theme-VBM nb-select .select-button {
+  background-color: nb-theme(color-primary-100) !important;
+  border-color: nb-theme(color-primary-400) !important;
+  border-style: solid;
+  border-width: 1px;
+  color: nb-theme(color-primary-400) !important;
+}
+
+// icon in the btn
+body.nb-theme-VBM nb-select.appearance-outline .select-button nb-icon {
+  color: nb-theme(color-primary-500) !important;
+}
+
+//sidebar
+//sidebar size and when trigger menu click adjusted width
+body.nb-theme-VBM .vbm-sidebar,
+.nb-theme-VBM nb-sidebar.expanded,
+body.nb-theme-VBM nb-sidebar .main-container {
+  width: 7.96rem !important;
+}
+
+body.nb-theme-VBM .vbm-sidebar,
+.nb-theme-VBM nb-sidebar.expanded {
+  background-color: nb-theme(color-primary-400);
+  box-shadow: none;
+  overflow: visible;
+}
+
+//icon color
+.nb-theme-VBM nb-menu .menu-item .menu-icon {
+  color: nb-theme(color-primary-100) !important;
+}
+
+.nb-theme-VBM nb-menu .menu-item .active .menu-icon {
+  color: nb-theme(color-primary-500) !important;
+}
+
+.nb-theme-VBM nb-menu .menu-item .expand-state {
+  color: nb-theme(color-primary-500) !important;
+}
+
+//when trigger menu click
+.nb-theme-VBM nb-sidebar.compacted {
+  width: 3.4rem !important;
+}
+
+//style sidebar
+body.nb-theme-VBM nb-menu .menu-item {
+  border: none;
+}
+
+//adjust padding in first of menu to show the decoration -- leave scrollable class if removed the language menu effected
+.nb-theme-VBM .scrollable nb-menu .menu-items:first-child {
+  padding-top: 0px !important;
+}
+
+.nb-theme-VBM nb-menu .menu-item .menu-item:first-child {
+  border-top: none !important;
+}
+
+// add the one line break space to be like the VBM design -- leave scrollable class if removed the language menu effected
+.nb-theme-VBM .scrollable nb-menu .menu-title::before {
+  content: "\a";
+  white-space: pre;
+}
+
+// add position to menu item add the decoration curves images
+.nb-theme-VBM nb-menu .menu-item {
+  position: relative;
+}
+
+//style the item
+.nb-theme-VBM nb-menu .menu-item a {
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  color: nb-theme(color-primary-100) !important;
+  transition: ease all 0.1s;
+}
+.nb-theme-VBM .context-menu .menu-item a {
+  color: nb-theme(color-primary-400) !important;
+}
+//hover state
+.nb-theme-VBM nb-menu .menu-item a:hover {
+   transition: ease all .3s;
+   background-color: nb-theme(color-basic-100) !important;
+  // background: linear-gradient(
+  //   45deg,
+  //   nb-theme(color-primary-100),
+  //   nb-theme(color-basic-300),
+  //   nb-theme(color-primary-100)
+  // ) !important;
+  color: nb-theme(color-primary-500) !important;
+  background-size: 600% 600%;
+  -webkit-animation: calm-white 14s ease infinite;
+  -moz-animation: calm-white 14s ease infinite;
+  -o-animation: calm-white 14s ease infinite;
+  animation: calm-white 14s ease infinite;
+}
+.nb-theme-VBM nb-menu .menu-item a:hover nb-icon{
+  color: nb-theme(color-primary-500) !important;
+}
+.nb-theme-VBM
+  nb-menu
+  .menu-items:nth-child(2)
+  > li.menu-item:first-child
+  a:hover,.nb-theme-VBM
+  nb-menu
+  .menu-items:nth-child(2)
+  > li.menu-item:first-child
+  a {
+  border-radius: 34px 34px 0 0;
+}
+
+.nb-theme-VBM
+  nb-menu
+  .menu-items:nth-child(2)
+  > li.menu-item:last-child
+  a:hover,.nb-theme-VBM
+  nb-menu
+  .menu-items:nth-child(2)
+  > li.menu-item:last-child
+  a {
+  border-radius: 0 0 34px 34px;
+}
+
+// menu bg color it should be #fff
+.nb-theme-VBM nb-menu .menu-item a.active {
+  background: nb-theme(color-primary-100) !important;
+  color: nb-theme(color-primary-500) !important;
+}
+
+.nb-theme-VBM nb-calendar-view-mode button,.nb-theme-VBM nb-calendar-view-mode nb-icon,.nb-theme-VBM nb-calendar-view-mode button nb-icon{
+  color:nb-theme(color-primary-100) !important;
+}
+
+.nb-theme-VBM nb-chat.status-primary .header {
+  background-color:nb-theme(color-primary-400);
+  color:nb-theme(color-primary-100);
+}
+//directions..
+// add decoration curves imgs regarding directions in the page..
+html[dir="rtl"] {
+
+  .nb-theme-VBM .type-select {
+    margin-left: 0;
+    margin-right: auto;
+  }
+  .nb-theme-VBM .bell-position nb-badge {
+    right: 12px !important;
+    top: -10px !important;
+  }
+  .nb-theme-VBM nb-card-header nb-badge {
+    left: 15px !important;
+  }
+  //bootstrap basic is english vbm is fliped..
+  .vbm-float-right {
+    float: left !important;
+  }
+  .vbm-float-left {
+    float: right !important;
+  }
+  // .text-right{
+  //     text-align: right;
+  // }
+  // .text-left{
+  //     text-align: left;
+  // }
+  //style the logo after click..in header ts
+  .menu-logo {
+    padding: 28px 5px 28px 5px !important;
+    right: -20px !important;
+    width: 55px !important;
+  }
+  .menu-logo a {
+    font-size: 10px !important;
+  }
+  body.nb-theme-VBM nb-menu .menu-item a.active::before {
+    content: "" !important;
+    background: url("https://res.cloudinary.com/m-clouder/image/upload/v1586866690/vbm-top-curve_ncvqjp.png")
+      no-repeat !important;
+    position: absolute;
+    top: -30px !important;
+    z-index: 2;
+    right: auto !important;
+    left: 0 !important;
+    display: inline-block;
+    width: 30px !important;
+    height: 30px !important;
+    background-size: contain !important;
+  }
+  body.nb-theme-VBM nb-menu .menu-item a.active::after {
+    content: "" !important;
+    background: url("https://res.cloudinary.com/m-clouder/image/upload/v1586866690/vbm-bottom-curve_vpzh6m.png")
+      no-repeat !important;
+    position: absolute;
+    bottom: -29px !important;
+    z-index: 2;
+    right: auto !important;
+    left: 0 !important;
+    display: inline-block;
+    width: 30px !important;
+    height: 30px !important;
+    background-size: contain !important;
+  }
+  // customize logo area..
+  .vbm-logo {
+    background-color: nb-theme(color-primary-400);
+    padding: 28px 10px 28px 10px;
+    display: inline-block;
+    position: relative;
+    right: -20px;
+    color: #fff;
+    font-size: 14px;
+    width: 95px;
+  }
+  //submenu rtl
+  //menu bg
+  .nb-theme-VBM nb-sidebar .scrollable .menu-items > li.menu-item > ul {
+    right: 100%;
+    min-width: 150%;
+    background-color: nb-theme(color-primary-100);
+    color: nb-theme(color-primary-500);
+    box-shadow: -11px 15px 20px 0px rgba(56, 56, 56, 0.11);
+    border-top: 1px solid nb-theme(color-basic-300);
+    border-bottom: 1px solid nb-theme(color-basic-300);
+    border-left: 1px solid nb-theme(color-basic-300);
+    border-radius: 34px;
+    top: -50px;
+    z-index: 99999;
+    -webkit-transition: all ease 0.3s;
+    transition: all ease 0.3s;
+    opacity: 1;
+    visibility: visible;
+    padding: 0;
+  }
+  //title align
+  .nb-theme-VBM nb-card.status-info nb-card-header {
+    text-align: right !important;
+  }
+  //arrow in submenu rtl
+  // .nb-theme-VBM nb-sidebar .scrollable .menu-items>li.menu-item>ul::before {
+  //     content: '';
+  //     z-index: 1999;
+  //     position: absolute;
+  //     width: 0;
+  //     top: 35px;
+  //     right: -15px;
+  //     height: 0;
+  //     border-style: solid;
+  //     border-width: 10px 0 10px 20px;
+  //     -webkit-transition: all ease-in .2s;
+  //     transition: all ease-in .2s;
+  //     border-color: transparent transparent transparent nb-theme(color-primary-400);
+  // }
+}
+
+html[dir="ltr"] {
+  .nb-theme-VBM .bell-position nb-badge {
+    left: 12px !important;
+    top: -10px !important;
+    right: auto !important;
+  }
+  .nb-theme-VBM nb-card-header nb-badge {
+    left: auto !important;
+    right: 15px !important;
+  }
+  //style the logo after click..in header ts
+  .menu-logo {
+    padding: 28px 5px 28px 5px !important;
+    left: -20px !important;
+    width: 55px !important;
+  }
+  .menu-logo a {
+    font-size: 10px !important;
+  }
+  body.nb-theme-VBM nb-menu .menu-item a.active::before {
+    content: "" !important;
+    background: url("https://res.cloudinary.com/m-clouder/image/upload/v1586866690/vbm-top-curve_ncvqjp.png")
+      no-repeat !important;
+    position: absolute;
+    top: -30px !important;
+    z-index: 2;
+    left: auto !important;
+    right: 0 !important;
+    display: inline-block;
+    width: 30px !important;
+    height: 30px !important;
+    background-size: contain !important;
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+  }
+  body.nb-theme-VBM nb-menu .menu-item a.active::after {
+    content: "" !important;
+    background: url("https://res.cloudinary.com/m-clouder/image/upload/v1586866690/vbm-bottom-curve_vpzh6m.png")
+      no-repeat !important;
+    position: absolute;
+    bottom: -29px !important;
+    z-index: 2;
+    left: auto !important;
+    right: 0 !important;
+    display: inline-block;
+    width: 30px !important;
+    height: 30px !important;
+    background-size: contain !important;
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+  }
+  // customize logo area..
+  .vbm-logo {
+    background-color: nb-theme(color-primary-400);
+    padding: 28px 10px 28px 10px;
+    display: inline-block;
+    position: relative;
+    left: -20px;
+    color: #fff;
+    font-size: 14px;
+    width: 95px;
+
+  }
+  //submenu ltr
+  //menu bg
+  .nb-theme-VBM nb-sidebar .scrollable .menu-items > li.menu-item > ul {
+    left: 100%;
+    min-width: 150%;
+    background-color: nb-theme(color-primary-100);
+    color: nb-theme(color-primary-500);
+    box-shadow: 11px 15px 20px 0px rgba(56, 56, 56, 0.11);
+    border-top: 1px solid nb-theme(color-basic-300);
+    border-bottom: 1px solid nb-theme(color-basic-300);
+    border-right: 1px solid nb-theme(color-basic-300);
+    border-radius: 34px;
+    top: -50px;
+    z-index: 99999;
+    -webkit-transition: all ease 0.3s;
+    transition: all ease 0.3s;
+    opacity: 1;
+    visibility: visible;
+    padding: 0;
+  }
+  //title align
+  .nb-theme-VBM nb-card.status-info nb-card-header {
+    text-align: left !important;
+  }
+  //arrow in submenu ltr
+  // .nb-theme-VBM nb-sidebar .scrollable .menu-items>li.menu-item>ul::before {
+  //     content: '';
+  //     z-index: 1999;
+  //     position: absolute;
+  //     top: 35px;
+  //     left: -15px;
+  //     width: 0;
+  //     height: 0;
+  //     border-style: solid;
+  //     border-width: 10px 20px 10px 0;
+  //     border-color: transparent nb-theme(color-primary-400) transparent transparent;
+  //     -webkit-transition: all ease-in .2s;
+  //     transition: all ease-in .2s;
+  // }
+}
+
+//content section
+body.nb-theme-VBM .vbm-content {
+  padding: 1rem !important;
+}
+
+//links in content
+.nb-theme-VBM nb-layout .layout {
+  color: nb-theme(color-primary-400) !important;
+}
+
+// card list header color
+.nb-theme-VBM nb-card-header {
+  color: nb-theme(color-primary-100) !important;
+  background-color: nb-theme(color-primary-400);
+  border-radius: 10px 10px 0 0;
+}
+
+// footer section
+// body.nb-theme-VBM .vbm-footer {}
+//footer links
+.nb-theme-VBM .content nb-layout-footer nav a {
+  color: nb-theme(color-primary-100) !important;
+}
+
+.nb-theme-VBM .content nb-layout-footer nav a:hover {
+  text-decoration: underline;
+}
+
+//footer bg
+.nb-theme-VBM nb-layout-footer nav {
+  background-color: nb-theme(color-primary-400) !important;
+}
+
+//controls general css --------------------------------------------------------------------------
+//text input
+body.nb-theme-VBM [nbInput] {
+  border-radius: 0.25rem;
+  background-color: nb-theme(color-primary-100) !important;
+  border: 1px solid nb-theme(color-primary-500) !important;
+  color: nb-theme(color-basic-400) !important;
+}
+
+body.nb-theme-VBM nb-option:hover {
+  background-color: nb-theme(color-primary-100) !important;
+  color: nb-theme(color-primary-400) !important;
+}
+.body.nb-theme-VBM nb-option.selected{
+  background-color: nb-theme(color-primary-500) !important;
+}
+
+body.nb-theme-VBM nb-option:focus {
+  background-color: nb-theme(color-primary-500) !important;
+  color: nb-theme(color-primary-100) !important;
+}
+
+//lists
+.nb-theme-VBM nb-list-item {
+  background-color: nb-theme(color-primary-100) !important;
+}
+
+//accordion header
+.nb-theme-VBM nb-accordion nb-accordion-item-header {
+  background-color: nb-theme(color-primary-100) !important;
+  // color: nb-theme(color-basic-400) !important;
+}
+
+.nb-theme-VBM nb-accordion nb-accordion-item-header a {
+  color: nb-theme(color-primary-400) !important;
+  line-height: 2.25rem;
+}
+
+.nb-theme-VBM nb-accordion nb-accordion-item-header nb-icon {
+  color: nb-theme(color-primary-500) !important;
+}
+
+//select
+body.nb-theme-VBM .ngx-dropdown-container .ngx-dropdown-list-container ul {
+  padding-right: 0px !important;
+  padding-left: 0px !important;
+}
+
+//steps
+// .nb-theme-VBM nb-stepper .header .connector {
+//   background-color:nb-theme(color-primary-400);
+// }
+.nb-theme-VBM nb-stepper.horizontal .header .step {
+  width: auto !important;
+  // margin:0 5% !important;
+}
+.nb-theme-VBM nb-stepper.horizontal .header {
+  width: 70%;
+  margin: 30px auto;
+}
+.nb-theme-VBM nb-stepper .header .label-index {
+  width: 3.5rem !important;
+  height: 3.5rem !important;
+  border: 1px solid nb-theme(color-primary-400) !important;
+  background-color: nb-theme(color-primary-200) !important;
+}
+
+.nb-theme-VBM nb-stepper .header .step.selected {
+  color: nb-theme(color-primary-100) !important;
+  font-weight: bold;
+  transform: scale(1.2, 1.2);
+}
+.nb-theme-VBM nb-stepper .header .step.selected .label-index {
+  background-color: nb-theme(color-primary-400) !important;
+}
+
+//title bgg
+.nb-theme-VBM nb-card.status-info nb-card-header {
+  background-color: nb-theme(color-primary-200) !important;
+  border-bottom-width: 0;
+  border-bottom-color: nb-theme(color-basic-300) !important;
+  color: nb-theme(color-basic-400) !important;
+}
+
+//scrollbar
+body.nb-theme-VBM::-webkit-scrollbar-thumb {
+  color: nb-theme(color-basic-400) !important;
+}
+
+// button focus
+.nb-theme-VBM [nbButton].appearance-filled.status-primary:focus {
+  border-color: nb-theme(color-basic-400) !important;
+}
+
+.nb-theme-VBM [nbButton].appearance-filled.status-primary:active {
+  background-color: nb-theme(color-primary-400) !important;
+  border-color: nb-theme(color-primary-400) !important;
+}
+
+//dropdown
+.nb-theme-VBM .appearance-outline.size-medium nb-option {
+  color: nb-theme(color-primary-100) !important;
+}
+.nb-theme-VBM .appearance-outline.size-medium nb-option:hover {
+  color: nb-theme(color-primary-400) !important;
+  background-color: nb-theme(color-primary-100) !important;
+}
+
+//card
+.nb-theme-VBM nb-card-body {
+  box-shadow: none !important;
+}
+body.nb-theme-VBM nb-card {
+  background-color: nb-theme(color-primary-100);
+  color: nb-theme(color-basic-400) !important;
+  scrollbar-face-color: nb-theme(color-primary-100);
+  scrollbar-track-color: nb-theme(color-primary-500);
+  border: none;
+  box-shadow: 0 0 8px 2px nb-theme(color-basic-1100) !important;
+  border-radius: 10px;
+}
+
+//link inside card
+body.nb-theme-VBM nb-card a {
+  color: nb-theme(color-primary-400) !important;
+}
+
+//icon inside card
+body.nb-theme-VBM nb-card-front nb-icon,
+body.nb-theme-VBM nb-card-header nb-icon,
+body.nb-theme-VBM .btn-custom nb-icon {
+  color: nb-theme(color-primary-100);
+}
+
+//change the custom btn in theme also
+body.nb-theme-VBM .btn-custom,
+body.nb-theme-VBM .button-secondary {
+  display: none !important;
+}
+
+// effect
+
+/*VBM Button */
+
+body .vbm-button-holder {
+  display: none;
+}
+
+body.nb-theme-VBM .vbm-button-holder {
+  border-radius: 30px;
+  display: inline-flex;
+  height: 60px;
+  width: 100%;
+  border: 1px solid nb-theme(color-basic-300);
+  color: nb-theme(color-primary-400) !important;
+  text-transform: uppercase;
+  text-decoration: none;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: linear-gradient(
+    54deg,
+    nb-theme(color-primary-100),
+    nb-theme(color-basic-300),
+    nb-theme(color-primary-100)
+  );
+  background-size: 600% 600%;
+  -webkit-animation: calm-white 10s ease infinite;
+  -moz-animation: calm-white 10s ease infinite;
+  -o-animation: calm-white 10s ease infinite;
+  animation: calm-white 10s ease infinite;
+  box-shadow: 4px 7px 20px 2px nb-theme(color-basic-300);
+}
+
+body.nb-theme-VBM .vbm-button-holder span {
+  transition: all ease 1s;
+}
+
+body.nb-theme-VBM .vbm-button-holder:hover span {
+  color: nb-theme(color-primary-100);
+  position: relative;
+  z-index: 5;
+  text-decoration: none !important;
+  outline: none;
+  transition: all ease 1s;
+}
+
+@-webkit-keyframes calm-white {
+  0% {
+    background-position: 0% 66%;
+  }
+  50% {
+    background-position: 100% 35%;
+  }
+  100% {
+    background-position: 0% 66%;
+  }
+}
+
+@-moz-keyframes calm-white {
+  0% {
+    background-position: 0% 66%;
+  }
+  50% {
+    background-position: 100% 35%;
+  }
+  100% {
+    background-position: 0% 66%;
+  }
+}
+
+@-o-keyframes calm-white {
+  0% {
+    background-position: 0% 66%;
+  }
+  50% {
+    background-position: 100% 35%;
+  }
+  100% {
+    background-position: 0% 66%;
+  }
+}
+
+@keyframes calm-white {
+  0% {
+    background-position: 0% 66%;
+  }
+  50% {
+    background-position: 100% 35%;
+  }
+  100% {
+    background-position: 0% 66%;
+  }
+}
+
+@-webkit-keyframes vbm-p-btn {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@-moz-keyframes vbm-p-btn {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@-o-keyframes vbm-p-btn {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes vbm-p-btn {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+body.nb-theme-VBM #vbm-primary-btn {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+body.nb-theme-VBM #vbm-primary-btn a {
+  position: relative;
+  transition: all 0.45s ease-Out;
+}
+
+body.nb-theme-VBM #spin {
+  width: 0;
+  height: 0;
+  opacity: 0;
+  left: 70px;
+  top: 20px;
+  transform: rotate(0deg);
+  background: none;
+  position: absolute;
+  transition: all 0.5s ease-Out;
+}
+
+body.nb-theme-VBM #vbm-primary-btn:hover #spin {
+  width: 400%;
+  height: 400%;
+  opacity: 1;
+  left: -200%;
+  top: 0%;
+  -webkit-transform: rotate(180deg);
+  transform: rotate(180deg);
+  background: linear-gradient(
+    270deg,
+    nb-theme(color-primary-400),
+    nb-theme(color-primary-500)
+  );
+  background-size: 400% 400%;
+  -webkit-animation: vbm-p-btn 10s ease infinite;
+  -moz-animation: vbm-p-btn 10s ease infinite;
+  -o-animation: vbm-p-btn 10s ease infinite;
+  animation: vbm-p-btn 10s ease infinite;
+}
+
+body.nb-theme-VBM #vbm-primary-btn:hover a {
+  color: nb-theme(color-primary-100) !important;
+}
+
+//submenu css for VBM
+.nb-theme-VBM
+  nb-sidebar
+  .scrollable
+  .menu-items
+  li
+  a:first-child:nth-last-child(2):before {
+  content: "";
+  position: absolute;
+  height: 0;
+  width: 0;
+  border: 0px solid transparent;
+  top: 50%;
+  right: 5px;
+}
+
+.nb-theme-VBM nb-sidebar .scrollable .menu-items ul {
+  position: absolute;
+  white-space: nowrap;
+  visibility: hidden;
+  opacity: 0;
+  min-width: 0px;
+  transition: all ease 0.1s;
+  // border-bottom: 5px solid orange;
+  // background-color: #ffaeae;
+  // color: transparent !important;
+}
+
+.nb-theme-VBM nb-sidebar .main-container {
+  z-index: 2000;
+}
+
+.nb-theme-VBM nb-sidebar .scrollable,
+.nb-theme-VBM nb-sidebar .scrollable .menu-items {
+  overflow-y: visible !important;
+  overflow-x: visible !important;
+  position: relative;
+  padding: 0;
+}
+
+.nb-theme-VBM nb-sidebar .scrollable .menu-items > li.menu-item > ul li a,
+.nb-theme-VBM nb-menu .menu-items > li.menu-item > ul li a .menu-icon {
+  color: nb-theme(color-primary-500) !important;
+}
+
+.nb-theme-VBM nb-sidebar .menu-items.collapsed {
+  display: none;
+}
+
+.nb-theme-VBM nb-sidebar .menu-items.expanded {
+  display: block;
+}
+// added 7-5-2020
+
+.nb-theme-VBM nb-icon.status-warning {
+  color: nb-theme(color-primary-500);
+}
+.nb-theme-VBM nb-accordion nb-accordion-item {
+  background-color: nb-theme(color-primary-200);
+}
+.nb-theme-VBM .proc-btn.active {
+  background-color: nb-theme(color-primary-100);
+  color: nb-theme(color-primary-400) !important;
+}
+.nb-theme-VBM .proc-btn {
+  background-color: nb-theme(color-primary-100);
+  color: nb-theme(color-primary-500) !important;
+}
+.nb-theme-VBM .proc-btn.active:after {
+  border-color: nb-theme(color-primary-500) transparent transparent transparent !important;
+}
+.nb-theme-VBM .cell:first-child {
+  background: nb-theme(color-primary-400) !important;
+}
+
+.nb-theme-VBM nb-popover .primitive-overlay {
+  color: nb-theme(color-basic-200) !important;
+}
+
+.nb-theme-VBM .btn-danger {
+  border-radius: 0.25rem;
+  text-shadow: none !important;
+  color: nb-theme(color-primary-100);
+  background: nb-theme(color-danger-500);
+  box-shadow: none !important;
+  width: 100px;
+}
+.nb-theme-VBM .btn-danger:hover {
+  transform: none !important;
+  box-shadow: none !important;
+  background: nb-theme(color-danger-700);
+}
+.nb-theme-VBM pagenation .pagenation li {
+  background: nb-theme(color-primary-100) !important;
+}
+.nb-theme-VBM pagenation .pagenation li:hover {
+  background: nb-theme(color-primary-400) !important;
+  color: nb-theme(color-primary-100) !important;
+}
+.nb-theme-VBM pagenation .pagenation .current {
+  color: nb-theme(color-primary-100) !important;
+  text-shadow: none !important;
+  border: 1px solid nb-theme(color-basic-300) !important;
+  background: nb-theme(color-primary-500) !important;
+  box-shadow: none !important;
+}
+
+// theme bg
+.nb-theme-VBM nb-layout .layout {
+  background-color: nb-theme(color-primary-100);
+}
+//
+.nb-theme-VBM .summary-container {
+  background-color: nb-theme(color-primary-400) !important;
+  color: nb-theme(color-primary-100) !important ;
+}
+.nb-theme-VBM .summary-container .h6 {
+  color: nb-theme(color-primary-100) !important ;
+}
+.nb-theme-VBM nb-option.selected,
+.nb-theme-VBM .subtitle,
+.nb-theme-VBM nb-card-header h3,
+.nb-theme-VBM ngx-visitors-statistics,
+.nb-theme-VBM ngx-visitors-statistics .h1,
+.nb-theme-VBM .leaflet-control a,
+.nb-theme-VBM .stats .caption,
+.nb-theme-VBM .stats .caption-2 {
+  color: nb-theme(color-primary-100) !important ;
+}
+.nb-theme-VBM .cards-container nb-card {
+  box-shadow: 10px 0 8px 2px nb-theme(color-basic-1100) !important;
+}
+.nb-theme-VBM ngx-security-cameras button i,
+.nb-theme-VBM ngx-security-cameras button nb-icon,
+.nb-theme-VBM button.appearance-filled.status-basic,.nb-theme-VBM button.appearance-filled.status-primary,.nb-theme-VBM ng2-smart-table th.ng2-smart-actions-title-add a{
+  color: nb-theme(color-primary-100) !important ;
+}
+.nb-theme-VBM ngx-security-cameras button:hover {
+  background-color: transparent !important;
+}
+.nb-theme-VBM .columns {
+  min-height: 1100px;
+}
+.nb-theme-VBM .appearance-hero.status-primary{
+  background-image: -webkit-gradient(linear, left top, right top, from(nb-theme(color-primary-500))), to(nb-theme(color-primary-700)) !important;
+  background-image: linear-gradient(to right, nb-theme(color-primary-500),nb-theme(color-primary-700) ) !important; 
+}
+.nb-theme-VBM .appearance-hero.status-primary:hover {
+  background-image: -webkit-gradient(linear, left top, right top, from(nb-theme(color-primary-400))), to(nb-theme(color-primary-800)) !important;
+  background-image: linear-gradient(to right, nb-theme(color-primary-400),nb-theme(color-primary-800) ) !important;
+}
+body.nb-theme-VBM nb-menu .menu-item .menu-items a.active::before,body.nb-theme-VBM nb-menu .menu-item .menu-items a.active::after{
+  display: none !important;
+}
+.nb-theme-VBM .cdk-overlay-container{
+  z-index:99997 !important;
+}
+.nb-theme-VBM .scrollable-container{
+  z-index:99998 !important;
+}

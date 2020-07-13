@@ -1,0 +1,275 @@
+@import './themes.scss';
+// @include nb-install-component(){
+  
+//HM
+//  start custom themes
+//main Horizontal blue menu css theme.
+// 2.hm-header css
+// 3.hm-content css
+// 4.hm-footer css
+
+//1-general css
+
+// change layout
+//apply new css first
+//change theme header design all themes event
+body.nb-theme-HM .visibly,
+body.nb-theme-default .vbm-header,
+body.nb-theme-corporate .vbm-header,
+body.nb-theme-dark .vbm-header,
+body.nb-theme-cosmic .vbm-header {
+  display: none !important;
+}
+
+body.nb-theme-HM .vbm-header,
+body.nb-theme-default .visibly,
+body.nb-theme-corporate .visibly,
+body.nb-theme-dark .visibly,
+body.nb-theme-cosmic .visibly {
+  display: flex;
+}
+.nb-theme-HM nb-layout-header nav {
+  padding-right:0;
+  padding-left:0;
+}
+//hide sidebar
+.nb-theme-HM nb-sidebar{
+  display: none;
+}
+.nb-theme-HM{
+  position: relative;
+}
+.HM-container{
+  // max-width: 1490px;
+  margin: 0 auto;
+}
+.nb-theme-HM ngx-header{
+  display:block !important;
+}
+.nb-theme-HM .HM-menu .hm-vip{
+  display:block !important;
+}
+.nb-theme-HM nb-layout-header nav{
+  height:auto !important;
+}
+.nb-theme-HM::before{
+  content: '';
+  position: absolute;
+  top:0;
+  left:0;
+  right:0;
+  z-index:0;
+  height: 33vh !important;
+  height:250px;
+  width:99.7%;
+  background-color:nb-theme(color-primary-400);
+}
+//icon inside card
+body.nb-theme-HM nb-card-front nb-icon,
+body.nb-theme-HM nb-card-header nb-icon,
+body.nb-theme-HM .btn-custom nb-icon {
+  color: nb-theme(color-primary-500);
+}
+.nb-theme-HM nb-accordion nb-accordion-item-header nb-icon {
+  color: nb-theme(color-primary-500) !important;
+}
+//show hm menu in theme..
+.nb-theme-HM nb-menu-custom{
+  display: block;
+}
+.nb-theme-HM nb-menu{
+  display: inline-block;
+}
+// 2.hm-header css
+.nb-theme-HM .vbm-logo{
+  padding: 0px !important;
+  background-color:transparent !important;
+  left: auto !important;
+  right: auto !important;
+}
+.nb-theme-HM .logo{
+  color:nb-theme(color-basic-400);
+  border:none !important;
+  width: 100%;
+}
+.nb-theme-HM .menu-items{
+display: flex;
+}
+.nb-theme-HM .sidebar-toggle{
+  display:none;
+}
+.nb-theme-HM .menu-items .menu-item{
+border: none;
+  }
+  /* The navigation menu */
+.nb-theme-HM .menu-items {
+  overflow: hidden;
+}
+
+/* Navigation links */
+.nb-theme-HM .menu-items a {
+  float: left;
+  font-size: 14px;
+  color:nb-theme(color-primary-100);
+  text-align: center;
+  padding: 7px 7px;
+  text-decoration: none;
+}
+.nb-theme-HM .menu-items a:hover{
+  color:nb-theme(color-primary-500);
+}
+.nb-theme-HM nb-menu .menu-item a.active{
+  background-color:nb-theme(color-primary-500);
+  border-radius:14px;
+  color:nb-theme(color-primary-100);
+} 
+/* The subnavigation menu */
+.nb-theme-HM .menu-item {
+  float: left;
+  // overflow: hidden;
+}
+.nb-theme-HM nb-icon{
+  font-size:16px !important;
+}
+/* Subnav button */
+.nb-theme-HM .menu-item {
+  font-size: 12px;
+  border: none;
+  outline: none;
+  color:nb-theme(color-basic-400);
+  padding:0px 10px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+.nb-theme-HM .layout-container{
+  margin-top:2.4rem;
+}
+
+
+/* Style the subnav content - positioned absolute */
+.nb-theme-HM .menu-items .menu-items {
+  display:block;
+  position: absolute;
+  left: 0;
+  background-color:nb-theme(color-info-500) !important;
+  width: 100%;
+  z-index: 1;
+  top:40px;
+}
+
+/* Style the subnav links */
+.nb-theme-HM .menu-items .menu-items a {
+  float: left;
+  text-decoration: none;
+  color:nb-theme(color-primary-100) !important;
+}
+//
+.nb-theme-HM .logo-container{
+width:120px !important;
+}
+
+
+.nb-theme-HM nb-layout-header,.nb-theme-HM nb-layout-header nav{
+  background-color:nb-theme(color-primary-900) !important;
+  box-shadow: none;
+}
+.nb-theme-HM nb-user .user-name{
+  color:nb-theme(color-primary-300);
+}
+.nb-theme-HM nb-context-menu .menu-items a{
+  color:nb-theme(color-primary-500) !important;
+  display: block !important;
+  margin:0 auto !important;
+  float: none !important;
+}
+.nb-theme-HM .content{
+  position: relative;
+  z-index: 2;
+}
+.nb-theme-HM .context-menu{
+  display: block !important;
+}
+.nb-theme-HM nb-context-menu nb-menu .menu-items{
+  display: block !important;
+}
+.nb-theme-HM nb-context-menu nb-menu .menu-items .menu-item{
+  // float: none !important;
+  padding: 0 !important;
+  display:inline-block !important;
+  width:100% !important;
+  text-align: center;
+}
+.nb-theme-HM nb-card{
+  border-radius: 10px !important;
+  border: none !important;
+  box-shadow: 0 0 1px 2px nb-theme(color-basic-1100) !important;
+}
+.nb-theme-HM nb-option.selected,
+.nb-theme-HM .subtitle,
+.nb-theme-HM nb-card-header h3,
+.nb-theme-HM ngx-visitors-statistics,
+.nb-theme-HM ngx-visitors-statistics .h1,
+.nb-theme-HM .leaflet-control a,
+.nb-theme-HM .stats .caption,
+.nb-theme-HM .stats .caption-2 {
+  color: nb-theme(color-primary-100) !important ;
+}
+.nb-theme-HM .summary-container {
+  background-color: nb-theme(color-primary-400) !important;
+  color: nb-theme(color-primary-100) !important ;
+}
+.nb-theme-HM .summary-container .h6 {
+  color: nb-theme(color-primary-100) !important ;
+}
+.nb-theme-HM .cards-container nb-card {
+  box-shadow: 10px 0 8px 2px nb-theme(color-basic-1100) !important;
+}
+.nb-theme-HM ngx-security-cameras button i,
+.nb-theme-HM ngx-security-cameras button nb-icon,
+.nb-theme-HM button.appearance-filled.status-basic,.nb-theme-HM button.appearance-filled.status-primary,.nb-theme-HM ng2-smart-table th.ng2-smart-actions-title-add a{
+  color: nb-theme(color-primary-100) !important ;
+}
+.nb-theme-HM ngx-security-cameras button:hover {
+  background-color: transparent !important;
+}
+.nb-theme-HM .columns {
+  min-height: 1100px;
+}
+.nb-theme-HM .appearance-hero.status-primary{
+  background-image: -webkit-gradient(linear, left top, right top, from(nb-theme(color-primary-500))), to(nb-theme(color-primary-700)) !important;
+  background-image: linear-gradient(to right, nb-theme(color-primary-500),nb-theme(color-primary-700) ) !important; 
+}
+.nb-theme-HM .appearance-hero.status-primary:hover {
+  background-image: -webkit-gradient(linear, left top, right top, from(nb-theme(color-primary-400))), to(nb-theme(color-primary-800)) !important;
+  background-image: linear-gradient(to right, nb-theme(color-primary-400),nb-theme(color-primary-800) ) !important;
+}
+body.nb-theme-HM nb-menu .menu-item .menu-items a.active::before,body.nb-theme-HM nb-menu .menu-item .menu-items a.active::after{
+  display: none !important;
+}
+.nb-theme-HM .cdk-overlay-container{
+  z-index:99997 !important;
+}
+.nb-theme-HM .scrollable-container{
+  z-index:99998 !important;
+}
+.nb-theme-HM nb-select.appearance-outline.status-basic .select-button nb-icon{
+  color: nb-theme(color-primary-500) !important;
+}
+
+.nb-theme-HM nb-menu .menu-item a.active .expand-state{
+  color: nb-theme(color-primary-100) !important;
+}
+// .nb-theme-HM nb-select.appearance-outline.status-basic .select-button nb-icon{
+//   color:  nb-theme(color-primary-400) !important;
+// }
+// .nb-theme-HM nb-option:hover{
+//   background-color:  nb-theme(color-basic-500) !important;
+// }
+.nb-theme-HM nb-calendar-view-mode nb-icon,.nb-theme-HM nb-calendar-view-mode button nb-icon{
+  color:nb-theme(color-primary-100) !important;
+}
+.nb-theme-HM nb-chat.status-primary .header {
+  background-color:nb-theme(color-primary-400);
+  color:nb-theme(color-primary-100);
+}

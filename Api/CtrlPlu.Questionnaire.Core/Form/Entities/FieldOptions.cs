@@ -7,6 +7,13 @@ namespace CtrlPlu.Questionnaire.Core.Form.Entities
 {
     public class FieldOptions : BaseEntity
     {
-        public string OptionValue { get; set; }
+        public string OptionValue { get; private set; }
+
+        public FieldOptions(string optionValue)
+        {
+            OptionValue = string.IsNullOrWhiteSpace(optionValue)
+                ? throw new ArgumentNullException(nameof(optionValue))
+                : OptionValue = optionValue;
+        }
     }
 }

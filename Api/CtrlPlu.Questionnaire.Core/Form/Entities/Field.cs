@@ -11,6 +11,7 @@ namespace CtrlPlu.Questionnaire.Core.Form.Entities
         private List<Submission> _submission = new List<Submission>();
 
         private List<FieldOptions> _options = new List<FieldOptions>();
+
         public FieldType Type { get; private set; }
 
         public bool IsRequired { get; private set; }

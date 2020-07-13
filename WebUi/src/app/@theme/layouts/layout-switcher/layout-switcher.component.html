@@ -1,0 +1,21 @@
+<section class="layout-switcher">
+  <p style="font-size:20px;color: #fff;">Change Theme <nb-icon icon="brush"></nb-icon></p>
+  <hr>
+  <p style="color: #fff;">Change Theme Looks</p>
+  <div dir="ltr">
+    <button  class="btn btn-success m-1" (click)="enable('default')">Default</button>
+    <button  class="btn btn-success m-1" (click)="enable('dark')">Dark</button>
+    <button  class="btn btn-success m-1" (click)="enable('cosmic')">Cosmic</button>
+    <button  class="btn btn-success m-1" (click)="enable('corporate')">Corporate</button>
+    <button  class="btn btn-success m-1" (click)="enable('VBM');">Vertical Blue Layout</button>
+    <button  class="btn btn-success m-1" (click)="hmtheme();" >Horizontal Blue Layout</button>
+    <button  class="btn btn-success m-1" (click)="enable('TCLM');">Two Column Menu</button>
+  </div>
+  <hr>
+  <p style="color: #fff;">Change Direction</p>
+    <label dir="ltr">
+      <input type="checkbox" value="isRtl" (click)="toggleFlow()" />
+      <span style="color: #fff;font-weight: bold;"> Is RTL</span>
+    </label>
+  
+  </section>

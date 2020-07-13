@@ -1,5 +1,5 @@
 using System.Reflection;
-using Api.Extensions;
+using CtrlPlu.Questionnaire.Api.Extension;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;

@@ -1,0 +1,45 @@
+.layout-switcher{
+  background: linear-gradient(320deg, #2cd7ab, #772cd7);
+  background-size: 400% 400%;
+  border-radius:0 14px 14px 0;
+  -webkit-animation: g 12s ease infinite;
+  -moz-animation: g 12s ease infinite;
+  -o-animation: g 12s ease infinite;
+  animation: g 12s ease infinite;
+    position: fixed;
+    top: 10px;
+    left:-240px;
+    width:250px;
+    min-height:150px;
+    z-index:9999;
+    padding:20px;
+    transition: all 1s ease;
+}
+.layout-switcher:hover {
+    top: 10px;
+    left:0px;
+    width: 250px;
+    transition: all 1s ease;
+  }
+.layout-switcher hr{border-color: #fff;}
+
+@-webkit-keyframes g {
+    0%{background-position:0% 0%}
+    50%{background-position:93% 100%}
+    100%{background-position:0% 0%}
+}
+@-moz-keyframes g {
+    0%{background-position:0% 0%}
+    50%{background-position:93% 100%}
+    100%{background-position:0% 0%}
+}
+@-o-keyframes g {
+    0%{background-position:0% 0%}
+    50%{background-position:93% 100%}
+    100%{background-position:0% 0%}
+}
+@keyframes g {
+    0%{background-position:0% 0%}
+    50%{background-position:93% 100%}
+    100%{background-position:0% 0%}
+}

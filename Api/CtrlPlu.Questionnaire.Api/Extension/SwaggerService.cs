@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 
-namespace Api.Extensions
+namespace CtrlPlu.Questionnaire.Api.Extension
 {
     public static class SwaggerService
     {
