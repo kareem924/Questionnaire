@@ -5,10 +5,6 @@ namespace CtrlPlu.Questionnaire.Api.Application.Query.GetById
 {
     public class FormForIdDto
     {
-        public string Title { get; set; }
-
-        public string Description { get; set; }
-
         public IEnumerable<SectionDto> Sections { get; set; }
     }
 

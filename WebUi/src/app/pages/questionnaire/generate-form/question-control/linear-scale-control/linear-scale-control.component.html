@@ -1,0 +1,45 @@
+<div fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="2%">
+  <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10%">
+    <div>
+      <mat-form-field style="width: 60px;">
+        <mat-select [(ngModel)]="rateValue.from">
+          <mat-option *ngFor="let item of [0,1]" [value]="item">
+            {{item}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div>
+      To
+    </div>
+    <div>
+      <mat-form-field style="width: 60px;">
+        <mat-select [(ngModel)]="rateValue.to">
+          <mat-option *ngFor="let item of [2,3,4,5,6,7,8,9,10]" [value]="item">
+            {{item}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5%">
+    <div>
+      <span>{{rateValue.from}}</span>
+    </div>
+    <div>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Label" [(ngModel)]="rateValue.fromLabel">
+      </mat-form-field>
+    </div>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5%">
+    <div>
+      <span>{{rateValue.to}}</span>
+    </div>
+    <div>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Label" [(ngModel)]="rateValue.toLabel">
+      </mat-form-field>
+    </div>
+  </div>
+</div>

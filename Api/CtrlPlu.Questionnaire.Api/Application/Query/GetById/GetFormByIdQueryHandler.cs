@@ -26,11 +26,7 @@ namespace CtrlPlu.Questionnaire.Api.Application.Query.GetById
 
         private FormForIdDto MapFromFormToFormForId(Form form)
         {
-            var formDto = new FormForIdDto
-            {
-                Title = form.Title,
-                Description = form.Description
-            };
+            var formDto = new FormForIdDto();
             if (form.Sections != null)
             {
                 formDto.Sections = form.Sections.Select(MapFromSectionToSectionDto);

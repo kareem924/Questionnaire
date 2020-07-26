@@ -15,14 +15,15 @@ namespace CtrlPlu.Questionnaire.Api.Application.Command.AddForm
         private readonly IFormRepository _formRepository;
         private readonly IUnitOfWork _unitOfWork;
 
-        public AddFormCommandHandler(IFormRepository formRepository)
+        public AddFormCommandHandler(IFormRepository formRepository, IUnitOfWork unitOfWork)
         {
             _formRepository = formRepository;
+            _unitOfWork = unitOfWork;
         }
 
         public async Task Handle(AddFormCommand notification, CancellationToken cancellationToken)
         {
-            var form = new Form(notification.Title, notification.Description);
+            var form = new Form();
             if (notification.Sections != null)
             {
                 var sections = notification.Sections.Select(section =>

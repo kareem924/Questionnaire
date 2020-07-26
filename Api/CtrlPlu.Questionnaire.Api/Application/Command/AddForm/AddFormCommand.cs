@@ -6,10 +6,6 @@ namespace CtrlPlu.Questionnaire.Api.Application.Command.AddForm
 {
     public class AddFormCommand : ICommand
     {
-        public string Title { get; set; }
-
-        public string Description { get; set; }
-
         public IEnumerable<SectionDto> Sections { get; set; }
     }
 

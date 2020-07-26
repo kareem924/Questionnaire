@@ -1,0 +1,329 @@
+freebirdFormeditorViewPageThemeStripe {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  height: 10px;
+  left: -1px;
+  position: absolute;
+  top: -1px;
+  width: calc(100% + 2px);
+}
+
+.freebirdSolidBackground {
+  background-color: rgb(103, 58, 183);
+  color: rgba(255, 255, 255, 1);
+}
+
+.freebirdFormeditorViewPagePageFields {
+  box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.141), 0 1px 3px 0 rgba(0, 0, 0, 0.122);
+  transition: box-shadow 280ms cubic-bezier(0.4, 0.0, 0.2, 1);
+  border: 1px solid #dadce0;
+  border-radius: 8px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  background-color: #fff;
+  position: relative;
+  width: 100%;
+}
+
+.firstPage .freebirdFormeditorViewPageTitleAndDescription {
+  padding-top: 22px;
+  width: 100%;
+}
+
+
+.freebirdFormeditorViewPageTitleAndDescription {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-box-flex: 1;
+  box-flex: 1;
+  -webkit-flex-grow: 1;
+  flex-grow: 1;
+  outline: none;
+  padding: 12px 0;
+  width: 100%;
+}
+
+.freebirdFormeditorViewPageTitleAndDescription {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-box-flex: 1;
+  box-flex: 1;
+  -webkit-flex-grow: 1;
+  flex-grow: 1;
+  outline: none;
+  padding-top: 16px;
+  width: 100%;
+}
+
+.freebirdFormeditorViewCursorRoot,
+.bF .freebirdFormeditorViewCursorRoot {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  height: -webkit-calc(100% + 2px);
+  height: calc(100% + 2px);
+  left: -1px;
+  padding-right: 10px;
+  position: absolute;
+  bottom: -1px;
+  width: 6px;
+}
+
+.freebirdFormeditorViewCursorRoot {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  height: 100%;
+  left: 0;
+  padding-right: 13px;
+  position: absolute;
+  width: 3px;
+}
+
+freebirdFormeditorViewCursorColorContainer {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-flex: 1;
+  box-flex: 1;
+  -webkit-flex-grow: 1;
+  flex-grow: 1;
+}
+
+.freebirdFormeditorViewCursorColor {
+  -webkit-box-flex: 1;
+  box-flex: 1;
+  -webkit-flex-grow: 1;
+  flex-grow: 1;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  position: relative;
+  -webkit-box-flex: 1;
+  height: 100%;
+  width: 7px;
+  background-color: #4285f4;
+}
+
+.question-input {
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: .1px;
+  line-height: 24px;
+  font-weight: 400;
+  margin-left: 22px;
+  width: 450px;
+}
+
+.question-type {
+  font-family: Roboto, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: .2px;
+  line-height: 20px;
+  color: #202124;
+
+
+}
+
+.divier-sieze {
+  width: 94% !important;
+  margin-left: 22px !important;
+}
+
+.mat-form-field-appearance-outline .mat-select-arrow-wrapper {
+  padding-top: 12px !important;
+}
+
+.quantumWizTextinputSimpleinputEl {
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  display: inline-block;
+  outline: none;
+  width: 200px;
+}
+
+.freebirdFormeditorViewQuestionBodyShorttextbodyShortTextInput {
+  width: 50%;
+  margin-bottom: 28px;
+}
+
+.quantumWizTextinputSimpleinputMainContent {
+  position: relative;
+  vertical-align: top;
+}
+
+.freebirdFormeditorViewQuestionBodyShorttextbodyShortTextInput .exportContent {
+  top: 14px;
+}
+
+.quantumWizTextinputSimpleinputPlaceholder {
+  color: rgba(0, 0, 0, 0.38);
+  font: 400 16px Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
+  max-width: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  position: absolute;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.freebirdFormeditorViewQuestionBodyShorttextbodyShortTextInput .exportInput,
+.m2 .freebirdFormeditorViewQuestionBodyShorttextbodyShortTextInput .exportLabel {
+  font-family: Roboto, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: .2px;
+  line-height: 20px;
+  color: #70757a;
+}
+
+.quantumWizTextinputSimpleinputContentArea {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+}
+
+.quantumWizTextinputSimpleinputEl.isDisabled .quantumWizTextinputSimpleinputInput {
+  color: rgba(0, 0, 0, 0.38);
+}
+
+.quantumWizTextinputSimpleinputInput {
+  -webkit-box-flex: 1;
+  box-flex: 1;
+  -webkit-flex-grow: 1;
+  flex-grow: 1;
+  -webkit-flex-shrink: 1;
+  flex-shrink: 1;
+  background-color: transparent;
+  border: none;
+  display: block;
+  font: 400 16px Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
+  margin: 0;
+  min-width: 0%;
+  outline: none;
+  padding: .125em 0;
+  z-index: 0;
+}
+
+.quantumWizTextinputSimpleinputEl.isDisabled>.quantumWizTextinputSimpleinputMainContent>.quantumWizTextinputSimpleinputUnderline {
+  background: none;
+  border-bottom: 2px dotted rgba(0, 0, 0, 0.38);
+}
+
+.quantumWizTextinputSimpleinputUnderline {
+  background-color: rgba(0, 0, 0, 0.12);
+  height: 1px;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.quantumWizTextinputSimpleinputEl.isDisabled>.quantumWizTextinputSimpleinputMainContent>.quantumWizTextinputSimpleLongInputUnderline {
+  background: none;
+  border-bottom: 2px dotted rgba(0, 0, 0, 0.38);
+}
+
+.quantumWizTextinputSimpleLongInputUnderline {
+  background-color: rgba(0, 0, 0, 0.12);
+  height: 1px;
+  margin: 0;
+  padding: 0;
+  width: 160%;
+}
+
+.quantumWizTextinputPaperinputEl {
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  display: inline-block;
+  outline: none;
+  padding-bottom: 8px;
+  width: 200px;
+}
+
+.quantumWizTextinputPaperinputMainContent {
+  height: 40px;
+  position: relative;
+  vertical-align: top;
+}
+
+.quantumWizTextinputPaperinputContentArea {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  position: relative;
+  top: 14px;
+}
+
+.quantumWizTextinputPaperinputInputArea {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-flex: 1;
+  box-flex: 1;
+  -webkit-flex-grow: 1;
+  flex-grow: 1;
+  -webkit-flex-shrink: 1;
+  flex-shrink: 1;
+  min-width: 0%;
+  position: relative;
+}
+
+.quantumWizTextinputPaperinputInput {
+  -webkit-box-flex: 1;
+  box-flex: 1;
+  -webkit-flex-grow: 1;
+  flex-grow: 1;
+  -webkit-flex-shrink: 1;
+  flex-shrink: 1;
+  background-color: transparent;
+  border: none;
+  display: block;
+  font: 400 16px Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
+  height: 24px;
+  line-height: 24px;
+  margin: 0;
+  min-width: 0%;
+  outline: none;
+  padding: 0;
+  z-index: 0;
+}
+
+.quantumWizTextinputPaperinputUnderline {
+  background-color: rgba(0, 0, 0, 0.12);
+  bottom: -2px;
+  height: 1px;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  width: 100%;
+}
+
+.quantumWizTextinputPaperinputUnderline:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0);
+  pointer-events: none;
+}
+
+.quantumWizTextinputPaperinputFocusUnderline {
+  -webkit-transform: scaleX(0);
+  transform: scaleX(0);
+  background-color: #4285f4;
+  bottom: -2px;
+  height: 2px;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  width: 100%;
+}
