@@ -96,7 +96,7 @@
   flex-direction: column;
   width: 48px;
   top: 200px;
-  right: 378px;
+  right: 285px;
 
 }
 
@@ -125,4 +125,8 @@
   line-height: 20px;
   padding: 8px 16px;
   color: #fff;
+}
+
+.toolbar-color {
+  color: rgb(51, 102, 255);
 }

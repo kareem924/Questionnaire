@@ -9,10 +9,18 @@ namespace CtrlPlu.Questionnaire.Core.Form.Entities
     {
         private List<Section> _sections = new List<Section>();
 
+        public string Title { get; private set; }
+
+        public string Description { get; private set; }
+
         public IReadOnlyCollection<Section> Sections => _sections.AsReadOnly();
 
-        public Form()
+        private Form() { }
+
+        public Form(string title, string description)
         {
+            Title = title ?? throw new ArgumentNullException(nameof(title));
+            Description = description;
         }
 
         public void AddSections(params Section[] sections)

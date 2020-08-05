@@ -1,8 +1,8 @@
-import { QuestionControl, questionType } from './../../models/question-control.model';
+import { QuestionControl } from './../../models/question-control.model';
 import { Component, OnInit, HostListener, forwardRef, Output, EventEmitter, Input } from '@angular/core';
-import { QuestionType, questionTypes } from '../../models/question-type.enum';
-import { OptionsValue, RatingValue } from '../../models/question-control.model';
+import { questionTypes } from '../../models/question-type.enum';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 
 @Component({

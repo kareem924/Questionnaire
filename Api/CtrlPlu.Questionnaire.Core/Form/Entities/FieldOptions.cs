@@ -9,11 +9,14 @@ namespace CtrlPlu.Questionnaire.Core.Form.Entities
     {
         public string OptionValue { get; private set; }
 
-        public FieldOptions(string optionValue)
+        public int Order { get; private set; }
+
+        public FieldOptions(string optionValue, int order)
         {
             OptionValue = string.IsNullOrWhiteSpace(optionValue)
                 ? throw new ArgumentNullException(nameof(optionValue))
-                : OptionValue = optionValue;
+                : optionValue;
+            Order = order;
         }
     }
 }

@@ -30,12 +30,31 @@ namespace CtrlPlu.Questionnaire.Api.Application.Command.AddForm
 
         public string InputMask { get; set; }
 
+        public int Order { get; set; }
+
+        public RateDto RatingValue { get; set; }
+
         public IEnumerable<FieldOptionDto> FieldOptions { get; set; }
     }
 
     public class FieldOptionDto
     {
         public string Value { get; set; }
+
+        public int Order { get; set; }
+
+
+    }
+
+    public class RateDto
+    {
+        public int From { get; set; }
+
+        public int To { get; set; }
+
+        public string FromLabel { get; set; }
+
+        public string ToLabel { get; set; }
 
     }
 }

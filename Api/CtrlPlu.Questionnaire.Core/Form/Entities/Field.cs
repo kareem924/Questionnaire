@@ -22,7 +22,9 @@ namespace CtrlPlu.Questionnaire.Core.Form.Entities
 
         public string InputMask { get; private set; }
 
-        public Section Section { get; private set; }
+        public int Order { get; set; }
+
+        public RatingValue Rating { get; private set; }
 
         public IReadOnlyCollection<Submission> Submission => _submission.AsReadOnly();
 
@@ -38,16 +40,20 @@ namespace CtrlPlu.Questionnaire.Core.Form.Entities
             bool isRequired,
             string placeHolder,
             string label,
-            string inputMask)
+            string inputMask,
+            int order,
+            RatingValue rate = null)
         {
-            UpdateField(type, isRequired, placeHolder, label, inputMask);
+            UpdateField(type, isRequired, placeHolder, label, inputMask, order, rate);
         }
 
         public void UpdateField(FieldType type,
             bool isRequired,
             string placeHolder,
             string label,
-            string inputMask)
+            string inputMask,
+            int order,
+            RatingValue rate = null)
         {
 
             Type = type;
@@ -57,6 +63,8 @@ namespace CtrlPlu.Questionnaire.Core.Form.Entities
                 ? label
                 : throw new ArgumentNullException(nameof(Label));
             InputMask = inputMask;
+            Order = order;
+            Rating = rate;
         }
 
         public void AddOptions(params FieldOptions[] options)

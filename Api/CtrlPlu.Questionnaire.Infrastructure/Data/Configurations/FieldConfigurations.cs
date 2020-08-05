@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace CtrlPlu.Questionnaire.Infrastructure.Data.Configurations
 {
-   public class FieldConfigurations : IEntityTypeConfiguration<Field>
+    public class FieldConfigurations : IEntityTypeConfiguration<Field>
     {
         public void Configure(EntityTypeBuilder<Field> builder)
         {
@@ -19,6 +19,9 @@ namespace CtrlPlu.Questionnaire.Infrastructure.Data.Configurations
                 .WithOne()
                 .IsRequired()
                 .Metadata.PrincipalToDependent.SetPropertyAccessMode(PropertyAccessMode.Field);
+            builder.HasOne(form => form.Rating)
+                .WithOne()
+                .HasForeignKey<RatingValue>("FieldId"); ;
         }
     }
 }

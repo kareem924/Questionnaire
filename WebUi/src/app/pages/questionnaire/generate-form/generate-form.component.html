@@ -1,67 +1,168 @@
-<div fxLayout="row" fxLayoutAlign="space-around center"
-  style="color:rgb(51, 102, 255);margin-top: -26px;margin-bottom: 21px;">
+<div
+  fxLayout="row"
+  fxLayoutAlign="space-around center"
+  style="margin-top: -26px; margin-bottom: 21px;"
+>
   <mat-toolbar>
     <mat-toolbar-row>
-      <span style="color:rgb(51, 102, 255);">Create New Form</span>
-      <span class="example-spacer"></span>
-      <mat-icon style="color:rgb(51, 102, 255);" class="example-icon" aria-hidden="false" aria-label="view">
-        visibility</mat-icon>
-      <mat-icon style="color:rgb(51, 102, 255);" class="example-icon" aria-hidden="false" aria-label="save">
-        save_alt
-      </mat-icon>
+      <span class="toolbar-color">Create New Form</span>
+      <span class="example-spacer toolbar-color"></span>
+      <button
+        mat-icon-button
+        class="example-icon toolbar-color"
+        [disabled]="!generateFormFormGroup.valid"
+        matTooltip="View"
+        [matTooltipPosition]="'below'"
+      >
+        <mat-icon> visibility</mat-icon>
+      </button>
+      <button
+        mat-icon-button
+        class="example-icon toolbar-color"
+        [disabled]="!generateFormFormGroup.valid"
+        (click)="submit()"
+        matTooltip="Save"
+        [matTooltipPosition]="'below'"
+      >
+        <mat-icon aria-hidden="false" aria-label="save">
+          save_alt
+        </mat-icon>
+      </button>
     </mat-toolbar-row>
   </mat-toolbar>
 </div>
 
-<div fxLayout="column" fxLayoutAlign="space-around center" fxLayoutGap=2%>
-  <form class="example-form" [formGroup]="generateFormFormGroup">
-    <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap=2%>
-      <div fxLayout="column" fxLayoutAlign="space-around center" fxLayoutGap=2% style="width: 100%;">
-        <div formArrayName="sections" *ngFor="let section of sections().controls; let i = index;">
+<div fxLayout="column" fxLayoutAlign="space-around center" fxLayoutGap="2%">
+  <form class="example-form" #generateForm [formGroup]="generateFormFormGroup">
+    <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="2%">
+      <div
+        fxLayout="column"
+        fxLayoutAlign="space-around center"
+        fxLayoutGap="2%"
+        style="width: 100%;"
+      >
+        <div
+          formArrayName="sections"
+          *ngFor="let section of sections().controls; let i = index"
+        >
           <div [formGroupName]="i" (click)="selectedSectionIndex = i">
             <div style="width: 100%; margin-bottom: 15px;">
-              <div class="section-index" *ngIf="sections().length > 1 ">
+              <div class="section-index" *ngIf="sections().length > 1">
                 <span class="section-index-text">
-                  Section {{i+1}} of {{sections().length}}
+                  Section {{ i + 1 }} of {{ sections().length }}
                 </span>
               </div>
-              <div class="section-container firstPage" (click)="onComeIn($event);" style="width: 770px;">
-                <div class="section-stripe section-stripe-color" *ngIf="selectedSectionIndex === i"></div>
-                <div class="section-title-description" fxLayout="column" fxLayoutAlign="space-around center"
-                  fxLayoutGap=2%>
-                  <mat-form-field class="title-first-page" *ngIf="selectedSectionIndex === i">
-                    <textarea matInput placeholder="Title" formControlName="title" required>Title</textarea>
+              <div
+                class="section-container firstPage"
+                (click)="onComeIn($event)"
+                style="width: 770px;"
+              >
+                <div></div>
+                <div
+                  class="section-stripe section-stripe-color"
+                  *ngIf="selectedSectionIndex === i"
+                ></div>
+                <div
+                  class="section-title-description"
+                  fxLayout="column"
+                  fxLayoutAlign="space-around center"
+                  fxLayoutGap="2%"
+                >
+                  <div
+                    fxLayout="row"
+                    fxLayoutAlign="space-between center"
+                    fxLayoutGap="1%"
+                  >
+                    <mat-form-field
+                      class="title-first-page"
+                      style="width: 630px;"
+                      *ngIf="selectedSectionIndex === i"
+                    >
+                      <textarea
+                        matInput
+                        placeholder="Title"
+                        formControlName="title"
+                        required
+                      >
+                    Title
+                    </textarea
+                      >
+                    </mat-form-field>
+                    <button
+                      *ngIf="
+                        selectedSectionIndex === i && sections().length > 1
+                      "
+                      mat-icon-button
+                      type="button"
+                      [matMenuTriggerFor]="sectionMenu"
+                      [matMenuTriggerData]="{ sectionIndex: i }"
+                    >
+                      <mat-icon>more_vert</mat-icon>
+                    </button>
+                  </div>
+
+                  <mat-form-field
+                    class="description-first-page"
+                    *ngIf="selectedSectionIndex === i"
+                  >
+                    <textarea
+                      matInput
+                      placeholder="Description"
+                      formControlName="description"
+                    >
+                      Description</textarea
+                    >
                   </mat-form-field>
-                  <mat-form-field class="description-first-page" *ngIf="selectedSectionIndex === i">
-                    <textarea matInput placeholder="Description" formControlName="description">Description</textarea>
-                  </mat-form-field>
-                  <h4 *ngIf="selectedSectionIndex !== i">{{ section.value.title}}</h4>
-                  <p *ngIf="selectedSectionIndex !== i">{{ section.value.description}}</p>
+                  <h4 *ngIf="selectedSectionIndex !== i">
+                    {{ section.value.title }}
+                  </h4>
+                  <p *ngIf="selectedSectionIndex !== i">
+                    {{ section.value.description }}
+                  </p>
                 </div>
               </div>
             </div>
-            <div formArrayName="fields">
-              <div *ngFor="let sectionField of sectionFields(i).controls; let sectionIndex=index">
-                <div [formGroupName]="sectionIndex" style="margin-bottom: 15px;">
-                  <ngx-question-control formControlName="field" [isActive]="selectedSectionIndex === i"
-                    (click)="onComeIn($event)" (onDelete)="removeSectionField(i,sectionIndex)"
-                    (onCopy)="duplicateField(i,sectionIndex)">
+            <div
+              formArrayName="fields"
+              cdkDropList
+              (cdkDropListDropped)="drop($event, i)"
+            >
+              <div
+                *ngFor="
+                  let sectionField of sectionFields(i).controls;
+                  let sectionIndex = index
+                "
+                cdkDrag
+              >
+                <div
+                  [formGroupName]="sectionIndex"
+                  style="margin-bottom: 15px;"
+                >
+                  <ngx-question-control
+                    formControlName="field"
+                    [isActive]="selectedSectionIndex === i"
+                    (click)="onComeIn($event)"
+                    (onDelete)="removeSectionField(i, sectionIndex)"
+                    (onCopy)="duplicateField(i, sectionIndex)"
+                  >
                   </ngx-question-control>
                 </div>
               </div>
-
             </div>
-
           </div>
         </div>
-
       </div>
     </div>
   </form>
 </div>
 
-<div class="option-menu" [@tabState]="{value: state, params: {top: top}}">
-  <button mat-icon-button matTooltip="Add Question" [matTooltipPosition]="'after'" (click)="addSectionField()">
+<div class="option-menu" [@tabState]="{ value: state, params: { top: top } }">
+  <button
+    mat-icon-button
+    matTooltip="Add Question"
+    [matTooltipPosition]="'after'"
+    (click)="addSectionField()"
+  >
     <mat-icon>add_circle_outline</mat-icon>
   </button>
   <button mat-icon-button>
@@ -76,7 +177,24 @@
   <button mat-icon-button>
     <mat-icon>text_fields</mat-icon>
   </button>
-  <button mat-icon-button (click)="addSection()" matTooltip="Add Section" [matTooltipPosition]="'after'">
+  <button
+    mat-icon-button
+    (click)="addSection()"
+    matTooltip="Add Section"
+    [matTooltipPosition]="'after'"
+  >
     <mat-icon>view_stream</mat-icon>
   </button>
 </div>
+<mat-menu #sectionMenu="matMenu">
+  <ng-template matMenuContent let-sectionIndex="sectionIndex">
+    <button mat-menu-item (click)="duplicateSection(sectionIndex)">
+      <mat-icon>content_copy</mat-icon>
+      <span>Duplicate Section</span>
+    </button>
+    <button mat-menu-item (click)="removeSection(sectionIndex)">
+      <mat-icon>delete_outline</mat-icon>
+      <span>Delete Section</span>
+    </button>
+  </ng-template>
+</mat-menu>

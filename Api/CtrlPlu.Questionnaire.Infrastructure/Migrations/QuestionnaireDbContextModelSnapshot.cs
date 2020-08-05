@@ -42,13 +42,13 @@ namespace CtrlPlu.Questionnaire.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("Order")
+                        .HasColumnType("int");
+
                     b.Property<string>("PlaceHolder")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("SectionId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("SectionId1")
                         .HasColumnType("int");
 
                     b.Property<int>("Type")
@@ -57,8 +57,6 @@ namespace CtrlPlu.Questionnaire.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("SectionId");
-
-                    b.HasIndex("SectionId1");
 
                     b.ToTable("Field");
                 });
@@ -109,6 +107,9 @@ namespace CtrlPlu.Questionnaire.Infrastructure.Migrations
                     b.Property<string>("OptionValue")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("Order")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("FieldId");
@@ -130,6 +131,9 @@ namespace CtrlPlu.Questionnaire.Infrastructure.Migrations
                     b.Property<int>("CreatedBy")
                         .HasColumnType("int");
 
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
@@ -139,9 +143,59 @@ namespace CtrlPlu.Questionnaire.Infrastructure.Migrations
                     b.Property<int>("LastModifiedBy")
                         .HasColumnType("int");
 
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.ToTable("Form");
+                });
+
+            modelBuilder.Entity("CtrlPlu.Questionnaire.Core.Form.Entities.RatingValue", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("Id")
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("FieldId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("From")
+                        .HasColumnType("int");
+
+                    b.Property<string>("FromLabel")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("LastModifiedBy")
+                        .HasColumnType("int");
+
+                    b.Property<int>("To")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ToLabel")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FieldId")
+                        .IsUnique()
+                        .HasFilter("[FieldId] IS NOT NULL");
+
+                    b.ToTable("RatingValue");
                 });
 
             modelBuilder.Entity("CtrlPlu.Questionnaire.Core.Form.Entities.Section", b =>
@@ -209,10 +263,6 @@ namespace CtrlPlu.Questionnaire.Infrastructure.Migrations
                         .HasForeignKey("SectionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("CtrlPlu.Questionnaire.Core.Form.Entities.Section", "Section")
-                        .WithMany()
-                        .HasForeignKey("SectionId1");
                 });
 
             modelBuilder.Entity("CtrlPlu.Questionnaire.Core.Form.Entities.FieldMultiValues", b =>
@@ -235,6 +285,13 @@ namespace CtrlPlu.Questionnaire.Infrastructure.Migrations
                         .HasForeignKey("FieldId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("CtrlPlu.Questionnaire.Core.Form.Entities.RatingValue", b =>
+                {
+                    b.HasOne("CtrlPlu.Questionnaire.Core.Form.Entities.Field", null)
+                        .WithOne("Rating")
+                        .HasForeignKey("CtrlPlu.Questionnaire.Core.Form.Entities.RatingValue", "FieldId");
                 });
 
             modelBuilder.Entity("CtrlPlu.Questionnaire.Core.Form.Entities.Section", b =>

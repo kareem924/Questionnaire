@@ -1,3 +1,5 @@
+import { QuestionType } from './question-type.enum';
+
 export interface questionType {
   type: number;
   icon: string;
@@ -10,7 +12,6 @@ export class QuestionControl {
   label: string;
   options: OptionsValue[] = [{ optionValue: 'Option 1' }];
   rateValue: RatingValue = { from: 0, to: 2, fromLabel: '', toLabel: '' };
-  isEdit: boolean;
 }
 
 export interface OptionsValue {
@@ -22,4 +23,22 @@ export interface RatingValue {
   to: number;
   fromLabel: string;
   toLabel: string;
+}
+
+export class CreateForm {
+  sections: section[]
+}
+
+export class section {
+  title: string;
+  description: string;
+  fields: Field[]
+}
+
+export class Field {
+  type: QuestionType;
+  isRequired: boolean;
+  label: string;
+  ratingValue: RatingValue;
+  fieldOptions: OptionsValue;
 }

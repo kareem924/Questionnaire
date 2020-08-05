@@ -23,7 +23,9 @@ namespace CtrlPlu.Questionnaire.Api.Application.Command.AddForm
 
         public async Task Handle(AddFormCommand notification, CancellationToken cancellationToken)
         {
-            var form = new Form();
+            var form = new Form(
+                notification.Sections.Single().Title,
+                notification.Sections.Single().Description);
             if (notification.Sections != null)
             {
                 var sections = notification.Sections.Select(section =>
@@ -36,10 +38,21 @@ namespace CtrlPlu.Questionnaire.Api.Application.Command.AddForm
                             field.IsRequired,
                             field.PlaceHolder,
                             field.Label,
-                            field.InputMask);
-                        var fieldOptions = field.FieldOptions.Select(option =>
-                            new FieldOptions(option.Value));
-                        addedField.AddOptions(fieldOptions.ToArray());
+                            field.InputMask,
+                            field.Order,
+                            new RatingValue(
+                                field.RatingValue.From,
+                                field.RatingValue.To,
+                                field.RatingValue.FromLabel,
+                                field.RatingValue.ToLabel));
+                        if (field.FieldOptions.All(option => option != null))
+                        {
+                            {
+                                var fieldOptions = field.FieldOptions.Select(option =>
+                                    new FieldOptions(option.Value, option.Order));
+                                addedField.AddOptions(fieldOptions.ToArray());
+                            }
+                        }
                         return addedField;
                     });
                     addedSection.AddFields(addedFields.ToArray());
@@ -49,8 +62,7 @@ namespace CtrlPlu.Questionnaire.Api.Application.Command.AddForm
                 await _formRepository.AddAsync(form);
                 await _unitOfWork.SaveEntitiesAsync(cancellationToken);
             }
-
-
         }
+
     }
 }

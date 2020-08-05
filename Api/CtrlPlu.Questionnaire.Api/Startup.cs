@@ -6,11 +6,13 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-
+using Microsoft.AspNetCore.Mvc.NewtonsoftJson;
 namespace CtrlPlu.Questionnaire.Api
 {
     public class Startup
     {
+        readonly string _myAllowSpecificOrigins = "_myAllowOrigins";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -26,8 +28,19 @@ namespace CtrlPlu.Questionnaire.Api
                 Configuration.GetConnectionString("DefaultConnection"));
             services.ConfigureJWT(Configuration);  // configure jwt authentication
             services.ConfigureSwagger(); //configure swagger
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson(); ;
             services.AddMediatR(Assembly.GetExecutingAssembly());
+            services.AddCors(options =>
+            {
+                options.AddPolicy(_myAllowSpecificOrigins,
+                    builder =>
+                    {
+                        builder
+                            .AllowAnyHeader()
+                            .AllowAnyMethod()
+                            .AllowAnyOrigin();
+                    });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -37,7 +50,7 @@ namespace CtrlPlu.Questionnaire.Api
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.UseCors(_myAllowSpecificOrigins);
             app.UseHttpsRedirection();
             app.UseRouting();
             app.UseAuthentication();
@@ -45,7 +58,6 @@ namespace CtrlPlu.Questionnaire.Api
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

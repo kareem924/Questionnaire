@@ -2,6 +2,7 @@ import { Component, OnInit, forwardRef, Input } from '@angular/core';
 import { OptionsValue } from '../../../models/question-control.model';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { QuestionType } from '../../../models/question-type.enum';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'ngx-options-control',
@@ -49,5 +50,9 @@ export class OptionsControlComponent implements ControlValueAccessor, OnInit {
   registerOnTouched() { }
 
   setDisabledState?(isDisabled: boolean): void {
+  }
+
+  drop(event: CdkDragDrop<OptionsValue[]>) {
+    moveItemInArray(this.options, event.previousIndex, event.currentIndex);
   }
 }

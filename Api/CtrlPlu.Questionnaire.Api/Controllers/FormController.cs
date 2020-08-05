@@ -7,7 +7,7 @@ using CtrlPlu.Questionnaire.Api.Application.Query.GetById;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CtrlPlu.Questionnaire.Api.Controllers.Folder
+namespace CtrlPlu.Questionnaire.Api.Controllers
 {
     [Route("api/forms")]
     [ApiController]

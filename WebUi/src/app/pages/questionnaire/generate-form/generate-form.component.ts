@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { trigger, state, transition, animate, style } from '@angular/animations';
-import { FormBuilder, FormGroup, Validators, FormArray, FormControl } from '@angular/forms';
-import { QuestionControl } from '../models/question-control.model';
+import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
+import { QuestionControl, CreateForm } from '../models/question-control.model';
 import { questionTypes } from '../models/question-type.enum';
+import { FormsService } from '../form.service';
+import { NbToastrService } from '@nebular/theme';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'ngx-generate-form',
@@ -26,11 +29,10 @@ export class GenerateFormComponent implements OnInit {
   top = "202"
   selectedSectionIndex = 0;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private formService: FormsService,
+    private toastrService: NbToastrService) {
 
     this.generateFormFormGroup = this.fb.group({
-      title: '',
-      description: '',
       sections: this.fb.array([this.newSection()]),
     })
   }
@@ -45,7 +47,7 @@ export class GenerateFormComponent implements OnInit {
 
   newSection(): FormGroup {
     return this.fb.group({
-      title: '',
+      title: ['', Validators.required],
       description: '',
       fields: this.fb.array([this.newField()])
     })
@@ -62,6 +64,12 @@ export class GenerateFormComponent implements OnInit {
     this.sections().removeAt(empIndex);
   }
 
+  duplicateSection(sectionIndex: number) {
+
+    const selectedSection = this.sections().at(sectionIndex);
+    console.log(selectedSection)
+    this.sections().push(selectedSection);
+  }
 
   sectionFields(empIndex: number): FormArray {
     return this.sections().at(empIndex).get("fields") as FormArray
@@ -90,6 +98,30 @@ export class GenerateFormComponent implements OnInit {
     this.sectionFields(sectionIndex).push(selectedField);
   }
 
+  submit() {
+    console.log(this.generateFormFormGroup.value);
+    const sections = [];
+    this.generateFormFormGroup.value.sections.forEach(section => {
+      sections.push({
+        title: section.title, description: section.description,
+        fields: section.fields.map(field => {
+          const nestedField = field.field;
+          return {
+            type: nestedField.selectedType.type,
+            isRequired: nestedField.isRequired || false,
+            label: nestedField.label || '',
+            fieldOptions: nestedField.options.map(option => { value: option.optionValue }),
+            ratingValue: nestedField.rateValue
+          }
+        })
+      })
+    });
+    const createModel = new CreateForm();
+    createModel.sections = sections;
+    this.formService.Create(createModel).subscribe(() => {
+      this.toastrService.success('Saved Successfuly.')
+    })
+  }
   onComeIn($event: any) {
     var target = $event.currentTarget;
 
@@ -105,5 +137,9 @@ export class GenerateFormComponent implements OnInit {
       this.state = 'default';
       this.top = pElement + "px";
     }
+  }
+
+  drop(event: CdkDragDrop<any[]>, sectionIndex) {
+    moveItemInArray(this.sectionFields(sectionIndex).controls, event.previousIndex, event.currentIndex);
   }
 }

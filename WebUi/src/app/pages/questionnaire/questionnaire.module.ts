@@ -8,6 +8,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialModule } from '../../material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 const routes: Routes = [
   {
@@ -20,6 +21,7 @@ const routes: Routes = [
 @NgModule({
   imports: [
     CommonModule,
+    DragDropModule,
     RouterModule.forChild(routes),
     MaterialModule,
     FormsModule,

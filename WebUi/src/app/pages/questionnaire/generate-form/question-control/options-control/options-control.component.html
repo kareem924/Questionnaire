@@ -1,28 +1,38 @@
-<ng-container *ngFor="let option of options; index as i">
-  <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="1%">
-    <div fxFlex="3">
-      <mat-icon *ngIf="type === types.MultipleChoice">
-        radio_button_unchecked
-      </mat-icon>
-      <mat-icon *ngIf="type === types.CheckBox">
-        check_box_outline_blank
-      </mat-icon>
-      <span *ngIf="type === types.DropDown">
-        {{i+1}}.
-      </span>
-    </div>
-    <div fxFlex="87">
-      <mat-form-field style="width: 100%;" class="example-full-width">
-        <input matInput [(ngModel)]="option.optionValue">
-      </mat-form-field>
-    </div>
-    <div fxFlex="8">
-      <button mat-icon-button *ngIf="options.length > 1" (click)="removeOption(i)">
-        <mat-icon>close</mat-icon>
-      </button>
+<div cdkDropList (cdkDropListDropped)="drop($event)" class="list-container">
+  <div *ngFor="let option of options; index as i" cdkDrag class="list-item">
+    <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="1%">
+      <div>
+        <mat-icon cdkDragHandle class="drag-icon">
+          drag_indicator
+        </mat-icon>
+      </div>
+      <div fxFlex="3">
+        <mat-icon *ngIf="type === types.MultipleChoice">
+          radio_button_unchecked
+        </mat-icon>
+        <mat-icon *ngIf="type === types.CheckBox">
+          check_box_outline_blank
+        </mat-icon>
+        <span *ngIf="type === types.DropDown"> {{ i + 1 }}. </span>
+      </div>
+      <div fxFlex="87">
+        <mat-form-field style="width: 100%;" class="example-full-width">
+          <input matInput [(ngModel)]="option.optionValue" />
+        </mat-form-field>
+      </div>
+      <div fxFlex="8">
+        <button
+          mat-icon-button
+          *ngIf="options.length > 1"
+          (click)="removeOption(i)"
+        >
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
     </div>
   </div>
-</ng-container>
+</div>
+
 <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="1%">
   <div>
     <mat-icon *ngIf="type === types.MultipleChoice">
@@ -31,9 +41,7 @@
     <mat-icon *ngIf="type === types.CheckBox">
       check_box_outline_blank
     </mat-icon>
-    <span *ngIf="type === types.DropDown">
-      {{options.length+1}}.
-    </span>
+    <span *ngIf="type === types.DropDown"> {{ options.length + 1 }}. </span>
   </div>
   <div>
     <span class="add-other" (click)="addOption()">Add Other</span>

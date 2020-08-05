@@ -1,5 +1,10 @@
 <div fxLayout="row" fxLayoutAlign="space-around center" style="width: 770px;">
   <div class="freebirdFormeditorViewPagePageFields firstPage head">
+    <div fxLayout="row" fxLayoutAlign="center center">
+      <mat-icon cdkDragHandle class="drag-icon">
+        drag_indicator
+      </mat-icon>
+    </div>
     <div class="freebirdFormeditorViewCursorRoot" *ngIf="isActive">
       <div class="freebirdFormeditorViewCursorColorContainer">
         <div class="freebirdFormeditorViewCursorColor"></div>
@@ -9,89 +14,175 @@
       <div fxLayout="row" fxLayoutAlign="space-between center">
         <div fxFlex="50">
           <mat-form-field appearance="fill" class="question-input">
-            <input matInput placeholder="Question" [(ngModel)]="question.label" required>
+            <input
+              matInput
+              placeholder="Question"
+              [(ngModel)]="question.label"
+              required
+            />
           </mat-form-field>
         </div>
         <div fxFlex="30" fxFlexOffset="8">
           <mat-form-field appearance="outline" class="question-type">
-            <mat-select placeholder="Type" [(ngModel)]="question.selectedType" (selectionChange)="typeChanged()">
+            <mat-select
+              placeholder="Type"
+              [(ngModel)]="question.selectedType"
+              (selectionChange)="typeChanged()"
+            >
               <mat-select-trigger>
                 <div fxLayout="row" fxLayoutAlign="start center">
-                  <mat-icon style="margin-right: 14px;">{{question.selectedType?.icon}}</mat-icon>
-                  {{question.selectedType?.text}}
+                  <mat-icon style="margin-right: 14px;">{{
+                    question.selectedType?.icon
+                  }}</mat-icon>
+                  {{ question.selectedType?.text }}
                 </div>
               </mat-select-trigger>
               <ng-container *ngFor="let item of questionTypes">
                 <mat-option *ngIf="item.type; else empty" [value]="item">
-                  <mat-icon>{{item.icon}}</mat-icon>
-                  {{item.text}}
+                  <mat-icon>{{ item.icon }}</mat-icon>
+                  {{ item.text }}
                 </mat-option>
               </ng-container>
             </mat-select>
           </mat-form-field>
         </div>
       </div>
-      <div fxLayout="row" [ngSwitch]="question.selectedType.type" fxLayoutAlign="space-between center"
-        style="margin-top: -11px;margin-bottom: 20px;">
-        <div style="margin-left: 26px;" *ngSwitchCase="1"
-          class="quantumWizTextinputSimpleinputEl freebirdFormeditorViewQuestionBodyShorttextbodyShortTextInput isDisabled">
+      <div
+        fxLayout="row"
+        [ngSwitch]="question.selectedType.type"
+        fxLayoutAlign="space-between center"
+        style="margin-top: -11px; margin-bottom: 20px;"
+      >
+        <div
+          style="margin-left: 26px;"
+          *ngSwitchCase="1"
+          class="quantumWizTextinputSimpleinputEl freebirdFormeditorViewQuestionBodyShorttextbodyShortTextInput isDisabled"
+        >
           <div class="quantumWizTextinputSimpleinputMainContent exportContent">
-            <div class="quantumWizTextinputSimpleinputPlaceholder exportLabel" aria-hidden="true">Short
-              answer text</div>
-            <div class="quantumWizTextinputSimpleinputContentArea"><input type="text"
-                class="quantumWizTextinputSimpleinputInput exportInput" autocomplete="off" tabindex="0"
-                aria-label="Short answer text" disabled="" dir="auto" data-initial-dir="auto"></div>
-            <div class="quantumWizTextinputSimpleinputUnderline exportUnderline"></div>
+            <div
+              class="quantumWizTextinputSimpleinputPlaceholder exportLabel"
+              aria-hidden="true"
+            >
+              Short answer text
+            </div>
+            <div class="quantumWizTextinputSimpleinputContentArea">
+              <input
+                type="text"
+                class="quantumWizTextinputSimpleinputInput exportInput"
+                autocomplete="off"
+                tabindex="0"
+                aria-label="Short answer text"
+                disabled=""
+                dir="auto"
+                data-initial-dir="auto"
+              />
+            </div>
+            <div
+              class="quantumWizTextinputSimpleinputUnderline exportUnderline"
+            ></div>
           </div>
         </div>
-        <div style="margin-left: 26px;" *ngSwitchCase="2"
-          class="quantumWizTextinputSimpleinputEl freebirdFormeditorViewQuestionBodyShorttextbodyShortTextInput isDisabled">
+        <div
+          style="margin-left: 26px;"
+          *ngSwitchCase="2"
+          class="quantumWizTextinputSimpleinputEl freebirdFormeditorViewQuestionBodyShorttextbodyShortTextInput isDisabled"
+        >
           <div class="quantumWizTextinputSimpleinputMainContent exportContent">
-            <div class="quantumWizTextinputSimpleinputPlaceholder exportLabel" aria-hidden="true">Long
-              answer text</div>
-            <div class="quantumWizTextinputSimpleinputContentArea"><input type="text"
-                class="quantumWizTextinputSimpleinputInput exportInput" autocomplete="off" tabindex="0"
-                aria-label="Short answer text" disabled="" dir="auto" data-initial-dir="auto"></div>
-            <div class="quantumWizTextinputSimpleLongInputUnderline exportUnderline"></div>
+            <div
+              class="quantumWizTextinputSimpleinputPlaceholder exportLabel"
+              aria-hidden="true"
+            >
+              Long answer text
+            </div>
+            <div class="quantumWizTextinputSimpleinputContentArea">
+              <input
+                type="text"
+                class="quantumWizTextinputSimpleinputInput exportInput"
+                autocomplete="off"
+                tabindex="0"
+                aria-label="Short answer text"
+                disabled=""
+                dir="auto"
+                data-initial-dir="auto"
+              />
+            </div>
+            <div
+              class="quantumWizTextinputSimpleLongInputUnderline exportUnderline"
+            ></div>
           </div>
         </div>
         <div style="margin-left: 26px; width: 100%;" *ngSwitchCase="3">
-          <ngx-options-control [(ngModel)]="question.options" [type]="question.selectedType.type"></ngx-options-control>
+          <ngx-options-control
+            [(ngModel)]="question.options"
+            [type]="question.selectedType.type"
+          ></ngx-options-control>
         </div>
         <div style="margin-left: 26px; width: 100%;" *ngSwitchCase="4">
-          <ngx-options-control [(ngModel)]="question.options" [type]="question.selectedType.type"></ngx-options-control>
+          <ngx-options-control
+            [(ngModel)]="question.options"
+            [type]="question.selectedType.type"
+          ></ngx-options-control>
         </div>
         <div style="margin-left: 26px; width: 100%;" *ngSwitchCase="5">
-          <ngx-options-control [(ngModel)]="question.options" [type]="question.selectedType.type"></ngx-options-control>
+          <ngx-options-control
+            [(ngModel)]="question.options"
+            [type]="question.selectedType.type"
+          ></ngx-options-control>
         </div>
         <div style="margin-left: 26px;" *ngSwitchCase="7">
-          <div class="freebirdFormeditorViewQuestionBodyTimebodyRoot" jscontroller="G9MREb" jsmodel="y4rPGe"
-            jsaction="rcuQ6b:npT2md;AHMWJc:ZX04Y;">
-            <div class="freebirdFormeditorViewQuestionBodyTimebodyPreviewContainer">
+          <div
+            class="freebirdFormeditorViewQuestionBodyTimebodyRoot"
+            jscontroller="G9MREb"
+            jsmodel="y4rPGe"
+            jsaction="rcuQ6b:npT2md;AHMWJc:ZX04Y;"
+          >
+            <div
+              class="freebirdFormeditorViewQuestionBodyTimebodyPreviewContainer"
+            >
               <div>
                 <div
                   class="quantumWizTextinputPaperinputEl freebirdFormeditorViewQuestionBodyTimebodyInput modeLight isDisabled hasValue"
-                  aria-disabled="true">
-                  <div class="quantumWizTextinputPaperinputMainContent exportContent">
+                  aria-disabled="true"
+                >
+                  <div
+                    class="quantumWizTextinputPaperinputMainContent exportContent"
+                  >
                     <div
-                      class="quantumWizTextinputPaperinputContentArea quantumWizTextinputPaperinputContentAreaWithEmbeddedContent exportContentArea">
-                      <div class="quantumWizTextinputPaperinputInputArea"><input type="text"
-                          class="quantumWizTextinputPaperinputInput exportInput" autocomplete="off" tabindex="0"
-                          value="day,month,year" disabled="" dir="auto" data-initial-dir="auto"></div>
+                      class="quantumWizTextinputPaperinputContentArea quantumWizTextinputPaperinputContentAreaWithEmbeddedContent exportContentArea"
+                    >
+                      <div class="quantumWizTextinputPaperinputInputArea">
+                        <input
+                          type="text"
+                          class="quantumWizTextinputPaperinputInput exportInput"
+                          autocomplete="off"
+                          tabindex="0"
+                          value="day,month,year"
+                          disabled=""
+                          dir="auto"
+                          data-initial-dir="auto"
+                        />
+                      </div>
                       <span
-                        class="quantumWizTextinputPaperinputContent quantumWizTextinputPaperinputPostContent exportPostEmbedContent">
+                        class="quantumWizTextinputPaperinputContent quantumWizTextinputPaperinputPostContent exportPostEmbedContent"
+                      >
                         <div
-                          class="freebirdMaterialIconIconEl freebirdFormeditorViewQuestionBodyTimebodyTimeIcon freebirdMaterialIconIconUpdatedM2">
+                          class="freebirdMaterialIconIconEl freebirdFormeditorViewQuestionBodyTimebodyTimeIcon freebirdMaterialIconIconUpdatedM2"
+                        >
                           <mat-icon style="color: gray;">event</mat-icon>
                         </div>
                       </span>
-                      <div class="quantumWizTextinputPaperinputUnderline exportUnderline"></div>
-                      <div class="quantumWizTextinputPaperinputFocusUnderline exportFocusUnderline">
-                      </div>
+                      <div
+                        class="quantumWizTextinputPaperinputUnderline exportUnderline"
+                      ></div>
+                      <div
+                        class="quantumWizTextinputPaperinputFocusUnderline exportFocusUnderline"
+                      ></div>
                     </div>
                   </div>
                   <div class="quantumWizTextinputPaperinputCounterErrorHolder">
-                    <div class="quantumWizTextinputPaperinputHint exportHint"></div>
+                    <div
+                      class="quantumWizTextinputPaperinputHint exportHint"
+                    ></div>
                   </div>
                 </div>
               </div>
@@ -100,30 +191,54 @@
         </div>
         <div style="margin-left: 26px;" *ngSwitchCase="8">
           <div class="freebirdFormeditorViewQuestionBodyTimebodyRoot">
-            <div class="freebirdFormeditorViewQuestionBodyTimebodyPreviewContainer">
+            <div
+              class="freebirdFormeditorViewQuestionBodyTimebodyPreviewContainer"
+            >
               <div>
                 <div
                   class="quantumWizTextinputPaperinputEl freebirdFormeditorViewQuestionBodyTimebodyInput modeLight isDisabled hasValue"
-                  aria-disabled="true">
-                  <div class="quantumWizTextinputPaperinputMainContent exportContent">
+                  aria-disabled="true"
+                >
+                  <div
+                    class="quantumWizTextinputPaperinputMainContent exportContent"
+                  >
                     <div
-                      class="quantumWizTextinputPaperinputContentArea quantumWizTextinputPaperinputContentAreaWithEmbeddedContent exportContentArea">
-                      <div class="quantumWizTextinputPaperinputInputArea"><input type="text"
-                          class="quantumWizTextinputPaperinputInput exportInput" autocomplete="off" tabindex="0"
-                          value="Time" disabled="" dir="auto" data-initial-dir="auto"></div><span
-                        class="quantumWizTextinputPaperinputContent quantumWizTextinputPaperinputPostContent exportPostEmbedContent">
+                      class="quantumWizTextinputPaperinputContentArea quantumWizTextinputPaperinputContentAreaWithEmbeddedContent exportContentArea"
+                    >
+                      <div class="quantumWizTextinputPaperinputInputArea">
+                        <input
+                          type="text"
+                          class="quantumWizTextinputPaperinputInput exportInput"
+                          autocomplete="off"
+                          tabindex="0"
+                          value="Time"
+                          disabled=""
+                          dir="auto"
+                          data-initial-dir="auto"
+                        />
+                      </div>
+                      <span
+                        class="quantumWizTextinputPaperinputContent quantumWizTextinputPaperinputPostContent exportPostEmbedContent"
+                      >
                         <div
-                          class="freebirdMaterialIconIconEl freebirdFormeditorViewQuestionBodyTimebodyTimeIcon freebirdMaterialIconIconUpdatedM2">
+                          class="freebirdMaterialIconIconEl freebirdFormeditorViewQuestionBodyTimebodyTimeIcon freebirdMaterialIconIconUpdatedM2"
+                        >
                           <mat-icon style="color: gray;">schedule</mat-icon>
                         </div>
                       </span>
-                      <div class="quantumWizTextinputPaperinputUnderline exportUnderline"></div>
-                      <div class="quantumWizTextinputPaperinputFocusUnderline exportFocusUnderline">
-                      </div>
+                      <div
+                        class="quantumWizTextinputPaperinputUnderline exportUnderline"
+                      ></div>
+                      <div
+                        class="quantumWizTextinputPaperinputFocusUnderline exportFocusUnderline"
+                      ></div>
                     </div>
                   </div>
                   <div class="quantumWizTextinputPaperinputCounterErrorHolder">
-                    <div jsname="ty6ygf" class="quantumWizTextinputPaperinputHint exportHint"></div>
+                    <div
+                      jsname="ty6ygf"
+                      class="quantumWizTextinputPaperinputHint exportHint"
+                    ></div>
                   </div>
                 </div>
               </div>
@@ -131,16 +246,26 @@
           </div>
         </div>
         <div style="margin-left: 26px;" *ngSwitchCase="9">
-          <ngx-linear-scale-control [type]="question.selectedType.type" [(ngModel)]="question.rateValue">
+          <ngx-linear-scale-control
+            [type]="question.selectedType.type"
+            [(ngModel)]="question.rateValue"
+          >
           </ngx-linear-scale-control>
         </div>
         <div style="margin-left: 26px;" *ngSwitchCase="10">
-          <ngx-linear-scale-control [type]="question.selectedType.type" [(ngModel)]="question.rateValue">
+          <ngx-linear-scale-control
+            [type]="question.selectedType.type"
+            [(ngModel)]="question.rateValue"
+          >
           </ngx-linear-scale-control>
         </div>
       </div>
       <mat-divider class="divier-sieze"></mat-divider>
-      <div fxLayout="row" fxLayoutAlign="space-between center" style="padding-top: 10px;">
+      <div
+        fxLayout="row"
+        fxLayoutAlign="space-between center"
+        style="padding-top: 10px;"
+      >
         <div fxFlex="30" fxFlexOffset="66">
           <div fxLayout="row" fxLayoutAlign="space-between center">
             <div>
@@ -150,23 +275,25 @@
             </div>
             <div>
               <button type="button" mat-icon-button (click)="remove()">
-                <mat-icon>
-                  delete_forever</mat-icon>
+                <mat-icon> delete_forever</mat-icon>
               </button>
             </div>
             <mat-divider style="height: 27px;" vertical="true"></mat-divider>
             <div>
-              <mat-slide-toggle labelPosition="before" [(ngModel)]="question.isRequired" color="primary">
+              <mat-slide-toggle
+                labelPosition="before"
+                [(ngModel)]="question.isRequired"
+                color="primary"
+              >
                 Required
               </mat-slide-toggle>
             </div>
           </div>
-
         </div>
       </div>
     </div>
   </div>
 </div>
 <ng-template #empty>
-  <mat-divider style="margin-top: 7px;margin-bottom: 7px;"></mat-divider>
+  <mat-divider style="margin-top: 7px; margin-bottom: 7px;"></mat-divider>
 </ng-template>
