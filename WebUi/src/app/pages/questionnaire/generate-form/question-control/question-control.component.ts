@@ -1,83 +1,100 @@
 import { QuestionControl } from './../../models/question-control.model';
-import { Component, OnInit, HostListener, forwardRef, Output, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit, HostListener, forwardRef, Output, EventEmitter, Input, AfterViewInit } from '@angular/core';
 import { questionTypes } from '../../models/question-type.enum';
-import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { ControlValueAccessor, NG_VALIDATORS, Validator, AbstractControl, ValidationErrors } from '@angular/forms';
+
 
 
 @Component({
   selector: 'ngx-question-control',
   templateUrl: './question-control.component.html',
-  styleUrls: ['./question-control.component.css'],
+  styleUrls: ['./question-control.component.scss'],
   providers: [{
-    provide: NG_VALUE_ACCESSOR,
+    provide: NG_VALIDATORS,
     useExisting: forwardRef(() => QuestionControlComponent),
     multi: true
+  },
+  {
+    provide: NG_VALIDATORS,
+    useExisting: forwardRef(() => QuestionControlComponent),
+    multi: true,
   }]
 })
 
-export class QuestionControlComponent implements ControlValueAccessor, OnInit {
+export class QuestionControlComponent implements ControlValueAccessor, AfterViewInit, OnInit, Validator {
 
   questionTypes = questionTypes;
-  question: QuestionControl = new QuestionControl();
   @Output() onCopy = new EventEmitter<QuestionControl>();
   @Output() onDelete = new EventEmitter<any>();
   @Input() isActive: boolean;
+  @Input('value') val: QuestionControl = new QuestionControl();
+  get value() {
+    return this.val;
+  }
+  set value(val) {
+    console.log(val);
+    this.val = val;
+    this.onChange(val);
+    this.onTouched();
+  }
+
 
   constructor() { }
 
-  writeValue(value: QuestionControl): void {
-    if (value !== undefined) {
-      this.question = value;
+  ngOnInit() {
+    this.val.selectedType = this.questionTypes[0];
+  }
+
+  ngAfterViewInit(): void {
+
+  }
+
+  onChange: any = () => {
+    console.log(this.val);
+  }
+
+  onTouched: any = () => { };
+
+  writeValue(obj: any): void {
+    if (obj) {
+      this.value = obj;
     }
   }
 
-  propagateChange = (_: any) => { };
+  registerOnChange(fn: any): void {
 
-  registerOnChange(fn) {
-    this.propagateChange = fn;
+    this.onChange = fn;
   }
 
-  registerOnTouched() { }
+  registerOnTouched(fn: any): void {
+    this.onTouched = fn;
+  }
 
   setDisabledState?(isDisabled: boolean): void {
+    throw new Error('Method not implemented.');
   }
 
+  validate(control: AbstractControl): ValidationErrors {
 
-
-  ngOnInit() {
-    this.question.selectedType = this.questionTypes[0];
+    return (this.val.label)
+      ? null
+      : {
+        jsonParseError: {
+          valid: false,
+        },
+      };
   }
 
-  typeChanged() {
-    this.isFocusInsideComponent = true;
-    this.isComponentClicked = true;
-
-  }
-  isFocusInsideComponent = false;
-  isComponentClicked = false;
-
-  @HostListener('click')
-  clickInside() {
-    this.isFocusInsideComponent = true;
-    this.isComponentClicked = true;
-  }
-
-  @HostListener('document:click')
-  clickout() {
-    if (!this.isFocusInsideComponent && this.isComponentClicked) {
-      // do the heavy process
-
-      this.isComponentClicked = false;
-    }
-    this.isFocusInsideComponent = false;
+  registerOnValidatorChange?(fn: () => void): void {
+    // this.onChange = fn;
   }
 
   copy() {
-    this.onCopy.emit(this.question);
+    this.onCopy.emit(this.val);
   }
 
   remove() {
     this.onDelete.emit();
   }
+
 }

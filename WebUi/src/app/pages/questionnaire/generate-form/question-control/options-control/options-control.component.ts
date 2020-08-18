@@ -7,7 +7,7 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 @Component({
   selector: 'ngx-options-control',
   templateUrl: './options-control.component.html',
-  styleUrls: ['./options-control.component.css'],
+  styleUrls: ['./options-control.component.scss'],
   providers: [{
     provide: NG_VALUE_ACCESSOR,
     useExisting: forwardRef(() => OptionsControlComponent),
@@ -38,6 +38,7 @@ export class OptionsControlComponent implements ControlValueAccessor, OnInit {
   writeValue(value: OptionsValue[]): void {
     if (value !== undefined) {
       this.options = value;
+
     }
   }
 

@@ -1,0 +1,12 @@
+<p>form-submission works!</p>
+<form (ngSubmit)="onSubmit()" [formGroup]="form">
+  <div *ngFor="let question of questions">
+    <ngx-controls
+      fxLayout="column"
+      fxLayoutAlign="center center"
+      [form]="form"
+      [question]="question"
+    ></ngx-controls>
+  </div>
+</form>
+{{ this.form.value | json }}

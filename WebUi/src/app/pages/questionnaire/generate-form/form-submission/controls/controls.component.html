@@ -1,0 +1,50 @@
+<div fxLayout="column" fxLayoutAlign="center center">
+  <div class="question-container">
+    <div class="question-header">
+      <div [formGroup]="form">
+        <div class="question-label">
+          {{ question.label }}
+        </div>
+        <div [ngSwitch]="question.controlType">
+          <app-input
+            *ngSwitchCase="controlTypes.TextBox"
+            [formControlName]="question.key"
+            [question]="question"
+          ></app-input>
+          <app-input
+            *ngSwitchCase="controlTypes.TextArea"
+            [formControlName]="question.key"
+          ></app-input>
+          <app-radio-button
+            *ngSwitchCase="controlTypes.MultipleChoice"
+            [formControlName]="question.key"
+          ></app-radio-button>
+          <app-checkbox
+            *ngSwitchCase="controlTypes.CheckBox"
+            [formControlName]="question.key"
+          ></app-checkbox>
+          <app-dropdown-list
+            *ngSwitchCase="controlTypes.DropDown"
+            [formControlName]="question.key"
+          ></app-dropdown-list>
+          <app-date-time
+            *ngSwitchCase="7"
+            [formControlName]="controlTypes.Date"
+          ></app-date-time>
+          <app-time
+            *ngSwitchCase="controlTypes.Time"
+            [formControlName]="question.key"
+          ></app-time>
+          <app-star-rate
+            *ngSwitchCase="controlTypes.LinearScale"
+            [formControlName]="question.key"
+          ></app-star-rate>
+          <app-slider-rate
+            *ngSwitchCase="controlTypes.LinearRate"
+            [formControlName]="question.key"
+          ></app-slider-rate>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
