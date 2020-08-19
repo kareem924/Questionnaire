@@ -7,20 +7,22 @@ import { QuestionBase } from '../../../../models/question-base';
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => StarRateComponent),
-      multi: true
+      multi: true,
     },
     {
       provide: NG_VALIDATORS,
       useExisting: forwardRef(() => StarRateComponent),
       multi: true,
-    }
+    },
   ],
   selector: 'app-star-rate',
   templateUrl: './star-rate.component.html',
-  styleUrls: ['./star-rate.component.scss']
+  styleUrls: ['./star-rate.component.scss'],
 })
 export class StarRateComponent implements OnInit, ControlValueAccessor, Validator {
 
+  ratingArr = [];
+  rating: number;
   @Input() question: QuestionBase;
   @Input('value') val: string;
   get value() {
@@ -35,6 +37,9 @@ export class StarRateComponent implements OnInit, ControlValueAccessor, Validato
   constructor() { }
 
   ngOnInit() {
+    for (let index = 0; index < 10; index++) {
+      this.ratingArr.push(index);
+    }
   }
 
   onChange: any = () => {
@@ -81,7 +86,17 @@ export class StarRateComponent implements OnInit, ControlValueAccessor, Validato
     // this.onChange = fn;
   }
 
+  onClick(rating: number) {
+    this.rating = rating;
+    this.value = rating.toString();
+  }
 
-
+  showIcon(index: number) {
+    if (this.rating >= index + 1) {
+      return 'star';
+    } else {
+      return 'star_border';
+    }
+  }
 }
 

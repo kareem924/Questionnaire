@@ -20,6 +20,7 @@ import { FormSubmissionComponent } from './generate-form/form-submission/form-su
 import { ControlsComponent } from './generate-form/form-submission/controls/controls.component';
 import { InputComponent } from './generate-form/form-submission/controls/input/input.component';
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
+import {StarRatingModule} from 'angular-star-rating';
 
 const routes: Routes = [
   {
@@ -41,7 +42,8 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     FlexLayoutModule,
-    NgxMaterialTimepickerModule
+    NgxMaterialTimepickerModule,
+    StarRatingModule.forRoot(),
   ],
   declarations: [
     GenerateFormComponent,
@@ -57,6 +59,6 @@ const routes: Routes = [
     RadioButtonComponent,
     StarRateComponent,
     TimeComponent,
-    SliderRateComponent]
+    SliderRateComponent],
 })
 export class QuestionnaireModule { }

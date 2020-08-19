@@ -7,7 +7,7 @@ import { Component, OnInit, Input, forwardRef } from '@angular/core';
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => DateTimeComponent),
-      multi: true
+      multi: true,
     },
     {
       provide: NG_VALIDATORS,
@@ -22,7 +22,7 @@ import { Component, OnInit, Input, forwardRef } from '@angular/core';
 export class DateTimeComponent implements OnInit, ControlValueAccessor, Validator {
 
   @Input() question: QuestionBase;
-  @Input('value') val: Date;
+  @Input('value') val: string;
   get value() {
     return this.val;
   }

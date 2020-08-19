@@ -19,7 +19,7 @@ import { QuestionBase } from '../../../../models/question-base';
   templateUrl: './slider-rate.component.html',
   styleUrls: ['./slider-rate.component.scss']
 })
-export class SliderRateComponent implements OnInit , ControlValueAccessor, Validator {
+export class SliderRateComponent implements OnInit, ControlValueAccessor, Validator {
 
   @Input() question: QuestionBase;
   @Input('value') val: string;
@@ -81,7 +81,12 @@ export class SliderRateComponent implements OnInit , ControlValueAccessor, Valid
     // this.onChange = fn;
   }
 
-
+  formatLabel(value: number) {
+    if (value >= 1000) {
+      return Math.round(value / 1000);
+    }
+    return value;
+  }
 
 }
 

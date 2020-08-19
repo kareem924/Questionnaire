@@ -7,17 +7,17 @@ import { Component, OnInit, Input, forwardRef } from '@angular/core';
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => InputComponent),
-      multi: true
+      multi: true,
     },
     {
       provide: NG_VALIDATORS,
       useExisting: forwardRef(() => InputComponent),
       multi: true,
-    }
+    },
   ],
   selector: 'app-input',
   templateUrl: './input.component.html',
-  styleUrls: ['./input.component.scss']
+  styleUrls: ['./input.component.scss'],
 })
 export class InputComponent implements OnInit, ControlValueAccessor, Validator {
 

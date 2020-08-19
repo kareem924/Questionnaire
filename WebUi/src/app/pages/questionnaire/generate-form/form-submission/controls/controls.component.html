@@ -28,8 +28,8 @@
             [formControlName]="question.key"
           ></app-dropdown-list>
           <app-date-time
-            *ngSwitchCase="7"
-            [formControlName]="controlTypes.Date"
+            *ngSwitchCase="controlTypes.Date"
+            [formControlName]="question.key"
           ></app-date-time>
           <app-time
             *ngSwitchCase="controlTypes.Time"

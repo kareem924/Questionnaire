@@ -31,6 +31,8 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatTreeModule } from '@angular/material/tree';
+import { MatSliderModule } from '@angular/material/slider';
+
 
 
 const types: Array<Type<any>> = [
@@ -43,7 +45,7 @@ const types: Array<Type<any>> = [
     MatFormFieldModule,
     MatRadioModule,
     MatSelectModule,
-    //MatSliderModule,
+    MatSliderModule,
     MatSlideToggleModule,
     MatMenuModule,
     //MatSidenavModule,
