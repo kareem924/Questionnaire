@@ -14,34 +14,42 @@
           <app-input
             *ngSwitchCase="controlTypes.TextArea"
             [formControlName]="question.key"
+            [question]="question"
           ></app-input>
           <app-radio-button
             *ngSwitchCase="controlTypes.MultipleChoice"
             [formControlName]="question.key"
+            [question]="question"
           ></app-radio-button>
           <app-checkbox
             *ngSwitchCase="controlTypes.CheckBox"
             [formControlName]="question.key"
+            [question]="question"
           ></app-checkbox>
           <app-dropdown-list
             *ngSwitchCase="controlTypes.DropDown"
             [formControlName]="question.key"
+            [question]="question"
           ></app-dropdown-list>
           <app-date-time
             *ngSwitchCase="controlTypes.Date"
             [formControlName]="question.key"
+            [question]="question"
           ></app-date-time>
           <app-time
             *ngSwitchCase="controlTypes.Time"
             [formControlName]="question.key"
+            [question]="question"
           ></app-time>
           <app-star-rate
-            *ngSwitchCase="controlTypes.LinearScale"
-            [formControlName]="question.key"
-          ></app-star-rate>
-          <app-slider-rate
             *ngSwitchCase="controlTypes.LinearRate"
             [formControlName]="question.key"
+            [question]="question"
+          ></app-star-rate>
+          <app-slider-rate
+            *ngSwitchCase="controlTypes.LinearScale"
+            [formControlName]="question.key"
+            [question]="question"
           ></app-slider-rate>
         </div>
       </div>

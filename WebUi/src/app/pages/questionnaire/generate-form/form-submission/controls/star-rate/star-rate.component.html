@@ -1,16 +1,28 @@
-<button
-  mat-icon-button
-  [color]="'primary'"
-  *ngFor="let ratingId of ratingArr; index as i"
-  [id]="'star_' + i"
-  (click)="onClick(i + 1)"
-  [matTooltip]="ratingId + 1"
-  matTooltipPosition="above"
+<div
+  div
+  fxLayout="row"
+  fxLayoutAlign="space-around center"
+  fxLayoutGap="1%"
+  style="width: 688px; margin-top: 26px;"
 >
-  <mat-icon>
-    {{ showIcon(i) }}
-  </mat-icon>
-</button>
-<!-- <mat-error *ngIf="starCount == null || starCount == 0">
-  Star count is <strong>required</strong> and cannot be zero
-</mat-error> -->
+  <div *ngIf="question.ratingValue.fromLabel">
+    <span>{{ question.ratingValue.fromLabel }}</span>
+  </div>
+  <div *ngFor="let ratingId of ratingArr; index as i">
+    <button
+      mat-icon-button
+      [color]="'primary'"
+      [id]="'star_' + i"
+      (click)="onClick(i + 1)"
+      [matTooltip]="ratingId + 1"
+      matTooltipPosition="above"
+    >
+      <mat-icon>
+        {{ showIcon(i) }}
+      </mat-icon>
+    </button>
+  </div>
+  <div *ngIf="question.ratingValue.toLabel">
+    <span>{{ question.ratingValue.toLabel }}</span>
+  </div>
+</div>

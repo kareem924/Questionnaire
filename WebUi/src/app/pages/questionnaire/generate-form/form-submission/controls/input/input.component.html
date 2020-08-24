@@ -1,3 +1,14 @@
 <mat-form-field style="width: 688px;">
-  <input matInput [placeholder]="question.label" [(ngModel)]="value" />
+  <input
+    *ngIf="question.controlType === 1"
+    matInput
+    [placeholder]="question.label"
+    [(ngModel)]="value"
+  />
+  <textarea
+    *ngIf="question.controlType === 2"
+    matInput
+    [placeholder]="question.label"
+    [(ngModel)]="value"
+  ></textarea>
 </mat-form-field>

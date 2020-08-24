@@ -1,3 +1,7 @@
-<p>
-  dropdown-list works!
-</p>
+<mat-form-field style="width: 688px;">
+  <mat-select [(ngModel)]="value">
+    <mat-option *ngFor="let option of question.options" [value]="option.key">
+      {{ option.value }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>

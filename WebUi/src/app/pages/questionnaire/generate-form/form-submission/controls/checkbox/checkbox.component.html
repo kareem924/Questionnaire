@@ -1,3 +1,13 @@
-<p>
-  checkbox works!
-</p>
+<span class="list-section">
+  <ul>
+    <li *ngFor="let option of question.options">
+      <mat-checkbox
+        [checked]="option.checked"
+        [color]="'primary'"
+        (change)="valueChange(option, $event)"
+      >
+        {{ option.value }}
+      </mat-checkbox>
+    </li>
+  </ul>
+</span>

@@ -1,3 +1,10 @@
-<p>
-  radio-button works!
-</p>
+<mat-radio-group class="radio-group" [(ngModel)]="value">
+  <mat-radio-button
+    class="radio-button"
+    *ngFor="let option of question.options"
+    [value]="option.key"
+    [color]="'primary'"
+  >
+    {{ option.value }}
+  </mat-radio-button>
+</mat-radio-group>

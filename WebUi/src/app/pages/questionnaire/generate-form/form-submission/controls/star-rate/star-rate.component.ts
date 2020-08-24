@@ -37,8 +37,8 @@ export class StarRateComponent implements OnInit, ControlValueAccessor, Validato
   constructor() { }
 
   ngOnInit() {
-    for (let index = 0; index < 10; index++) {
-      this.ratingArr.push(index);
+    for (let i = this.question.ratingValue.from; i < this.question.ratingValue.to; i++) {
+      this.ratingArr.push(i);
     }
   }
 

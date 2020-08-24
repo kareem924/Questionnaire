@@ -1,12 +1,22 @@
 <p>form-submission works!</p>
-<form (ngSubmit)="onSubmit()" [formGroup]="form">
-  <div *ngFor="let question of questions">
-    <ngx-controls
-      fxLayout="column"
-      fxLayoutAlign="center center"
-      [form]="form"
-      [question]="question"
-    ></ngx-controls>
-  </div>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <mat-horizontal-stepper formArrayName="formArray">
+    <div *ngFor="let control of testArray.controls; let i = index">
+      <mat-step formGroupName="{{ i }}" [stepControl]="formArray?.get([i])">
+        <div *ngFor="let question of control.controls | keyvalue">
+          <ngx-controls
+            fxLayout="column"
+            fxLayoutAlign="center center"
+            [form]="control"
+            [question]="getQuestion(question.key)"
+          ></ngx-controls>
+        </div>
+        <div>
+          <button mat-button *ngIf="i > 0" matStepperPrevious>Back</button>
+          <button mat-button matStepperNext type="button">Next</button>
+        </div>
+      </mat-step>
+    </div>
+  </mat-horizontal-stepper>
 </form>
 {{ form.getRawValue() | json }}
