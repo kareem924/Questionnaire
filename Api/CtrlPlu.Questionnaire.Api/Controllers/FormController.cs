@@ -28,8 +28,9 @@ namespace CtrlPlu.Questionnaire.Api.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> Get([FromQuery] GetFormByIdQuery query)
+        public async Task<IActionResult> Get(int id)
         {
+            var query = new GetFormByIdQuery { Id = id };
             var timeSlot = await _mediator.Send(query);
             return Ok(timeSlot);
         }
@@ -37,8 +38,8 @@ namespace CtrlPlu.Questionnaire.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] AddFormCommand command)
         {
-            await _mediator.Publish(command);
-            return Ok(command);
+            var result = await _mediator.Send(command);
+            return Ok(result);
         }
 
         [HttpPut("{id}")]

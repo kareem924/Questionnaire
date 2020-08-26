@@ -233,8 +233,6 @@ namespace CtrlPlu.Questionnaire.Infrastructure.Migrations
                     b.Property<int>("FieldId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("FieldId1")
-                        .HasColumnType("int");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
@@ -246,7 +244,6 @@ namespace CtrlPlu.Questionnaire.Infrastructure.Migrations
 
                     b.HasIndex("FieldId");
 
-                    b.HasIndex("FieldId1");
 
                     b.ToTable("Submission");
                 });
@@ -310,9 +307,7 @@ namespace CtrlPlu.Questionnaire.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("CtrlPlu.Questionnaire.Core.Form.Entities.Field", "Field")
-                        .WithMany()
-                        .HasForeignKey("FieldId1");
+
                 });
 #pragma warning restore 612, 618
         }

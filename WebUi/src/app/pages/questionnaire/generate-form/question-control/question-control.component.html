@@ -17,20 +17,25 @@
             <input
               matInput
               placeholder="Question"
-              [(ngModel)]="val.label"
+              [(ngModel)]="value.label"
+              name="textBox"
               required
             />
           </mat-form-field>
         </div>
         <div fxFlex="30" fxFlexOffset="8">
           <mat-form-field appearance="outline" class="question-type">
-            <mat-select placeholder="Type" [(ngModel)]="val.selectedType">
+            <mat-select
+              placeholder="Type"
+              name="select"
+              [(ngModel)]="value.selectedType"
+            >
               <mat-select-trigger>
                 <div fxLayout="row" fxLayoutAlign="start center">
                   <mat-icon style="margin-right: 14px;">{{
-                    val.selectedType?.icon
+                    value.selectedType?.icon
                   }}</mat-icon>
-                  {{ val.selectedType?.text }}
+                  {{ value.selectedType?.text }}
                 </div>
               </mat-select-trigger>
               <ng-container *ngFor="let item of questionTypes">
@@ -45,7 +50,7 @@
       </div>
       <div
         fxLayout="row"
-        [ngSwitch]="val.selectedType.type"
+        [ngSwitch]="value.selectedType.type"
         fxLayoutAlign="space-between center"
         style="margin-top: -11px; margin-bottom: 20px;"
       >
@@ -109,20 +114,23 @@
         </div>
         <div style="margin-left: 26px; width: 100%;" *ngSwitchCase="3">
           <ngx-options-control
-            [(ngModel)]="val.options"
-            [type]="val.selectedType.type"
+            [(ngModel)]="value.options"
+            name="checkbox"
+            [type]="value.selectedType.type"
           ></ngx-options-control>
         </div>
         <div style="margin-left: 26px; width: 100%;" *ngSwitchCase="4">
           <ngx-options-control
-            [(ngModel)]="val.options"
-            [type]="val.selectedType.type"
+            [(ngModel)]="value.options"
+            name="radiobutton"
+            [type]="value.selectedType.type"
           ></ngx-options-control>
         </div>
         <div style="margin-left: 26px; width: 100%;" *ngSwitchCase="5">
           <ngx-options-control
-            [(ngModel)]="val.options"
-            [type]="val.selectedType.type"
+            [(ngModel)]="value.options"
+            name="dropdown"
+            [type]="value.selectedType.type"
           ></ngx-options-control>
         </div>
         <div style="margin-left: 26px;" *ngSwitchCase="7">
@@ -243,15 +251,17 @@
         </div>
         <div style="margin-left: 26px;" *ngSwitchCase="9">
           <ngx-linear-scale-control
-            [type]="val.selectedType.type"
-            [(ngModel)]="val.rateValue"
+            [type]="value.selectedType.type"
+            [(ngModel)]="value.rateValue"
+            name="field9"
           >
           </ngx-linear-scale-control>
         </div>
         <div style="margin-left: 26px;" *ngSwitchCase="10">
           <ngx-linear-scale-control
-            [type]="val.selectedType.type"
-            [(ngModel)]="val.rateValue"
+            [type]="value.selectedType.type"
+            [(ngModel)]="value.rateValue"
+            name="field10"
           >
           </ngx-linear-scale-control>
         </div>
@@ -278,8 +288,9 @@
             <div>
               <mat-slide-toggle
                 labelPosition="before"
-                [(ngModel)]="val.isRequired"
+                [(ngModel)]="value.isRequired"
                 color="primary"
+                name="requiredField"
               >
                 Required
               </mat-slide-toggle>

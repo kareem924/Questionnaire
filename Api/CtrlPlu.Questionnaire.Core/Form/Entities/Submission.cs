@@ -23,7 +23,7 @@ namespace CtrlPlu.Questionnaire.Core.Form.Entities
             Field = field ?? throw new ArgumentNullException(nameof(field));
             Value = !string.IsNullOrWhiteSpace(value)
                 ? value
-                : throw new ArgumentNullException(nameof(value));
+                : string.Empty;
         }
 
         public void AddMultiValues(params FieldMultiValues[] multiValues)

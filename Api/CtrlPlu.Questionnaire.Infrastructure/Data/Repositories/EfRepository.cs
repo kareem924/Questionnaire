@@ -138,7 +138,10 @@ namespace CtrlPlu.Questionnaire.Infrastructure.Data.Repositories
             return SpecificationEvaluator<TEntity>.GetQuery(DbSet.AsQueryable(), spec);
         }
 
-        public Task<PagedResult<TEntity, IVM>> GetAllPagedAsync(ISpecification<TEntity> specification, QueryModel query)
+        public Task<PagedResult<TEntity, IVM>> GetAllPagedAsync(
+            ISpecification<TEntity> specification,
+            QueryModel query,
+            Func<TEntity, IVM> func)
         {
             var data = ApplySpecification(specification);
             return Task

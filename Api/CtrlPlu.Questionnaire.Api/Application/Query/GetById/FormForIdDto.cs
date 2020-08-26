@@ -19,6 +19,8 @@ namespace CtrlPlu.Questionnaire.Api.Application.Query.GetById
 
     public class FieldDto
     {
+        public int Id { get; set; }
+
         public FieldType Type { get; set; }
 
         public bool IsRequired { get; set; }
@@ -29,6 +31,8 @@ namespace CtrlPlu.Questionnaire.Api.Application.Query.GetById
 
         public string InputMask { get; set; }
 
+        public RatingValueDto RatingValue { get; set; }
+
         public IEnumerable<FieldOptionDto> FieldOptions { get; set; }
     }
 
@@ -36,5 +40,18 @@ namespace CtrlPlu.Questionnaire.Api.Application.Query.GetById
     {
         public string Value { get; set; }
 
+        public int Id { get; set; }
+
+    }
+
+    public class RatingValueDto
+    {
+        public int From { get; set; }
+
+        public int To { get; set; }
+
+        public string FromLabel { get; set; }
+
+        public string ToLabel { get; set; }
     }
 }

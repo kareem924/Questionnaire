@@ -1,3 +1,4 @@
+<block-ui>
 <div
   fxLayout="row"
   fxLayoutAlign="space-around center"
@@ -10,7 +11,6 @@
       <button
         mat-icon-button
         class="example-icon toolbar-color"
-        [disabled]="!generateFormFormGroup.valid"
         matTooltip="View"
         [matTooltipPosition]="'below'"
         (click)="routeToSubmit()"
@@ -20,7 +20,6 @@
       <button
         mat-icon-button
         class="example-icon toolbar-color"
-        [disabled]="!generateFormFormGroup.valid"
         (click)="submit()"
         matTooltip="Save"
         [matTooltipPosition]="'below'"
@@ -154,6 +153,7 @@
         </div>
       </div>
     </div>
+    <!-- <pre><code>{{ getAllErrors(generateForm) | json }}</code></pre> -->
   </form>
 </div>
 
@@ -199,3 +199,4 @@
     </button>
   </ng-template>
 </mat-menu>
+</block-ui>

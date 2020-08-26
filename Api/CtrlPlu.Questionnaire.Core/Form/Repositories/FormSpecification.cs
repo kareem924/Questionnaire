@@ -11,6 +11,12 @@ namespace CtrlPlu.Questionnaire.Core.Form.Repositories
         {
             AddInclude(form => form.Sections);
             AddInclude("Sections.Fields.Options");
+            AddInclude("Sections.Fields.Rating");
+        }
+
+        public FormSpecification() : base()
+        {
+
         }
     }
 }

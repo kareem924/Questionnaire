@@ -1,7 +1,7 @@
 import { QuestionControl } from './../../models/question-control.model';
 import { Component, OnInit, HostListener, forwardRef, Output, EventEmitter, Input, AfterViewInit } from '@angular/core';
 import { questionTypes } from '../../models/question-type.enum';
-import { ControlValueAccessor, NG_VALIDATORS, Validator, AbstractControl, ValidationErrors } from '@angular/forms';
+import { ControlValueAccessor, NG_VALIDATORS, Validator, AbstractControl, ValidationErrors, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 
 
@@ -10,7 +10,7 @@ import { ControlValueAccessor, NG_VALIDATORS, Validator, AbstractControl, Valida
   templateUrl: './question-control.component.html',
   styleUrls: ['./question-control.component.scss'],
   providers: [{
-    provide: NG_VALIDATORS,
+    provide: NG_VALUE_ACCESSOR,
     useExisting: forwardRef(() => QuestionControlComponent),
     multi: true
   },
@@ -29,6 +29,7 @@ export class QuestionControlComponent implements ControlValueAccessor, AfterView
   @Input() isActive: boolean;
   @Input('value') val: QuestionControl = new QuestionControl();
   get value() {
+    this.validate();
     return this.val;
   }
   set value(val) {
@@ -58,6 +59,7 @@ export class QuestionControlComponent implements ControlValueAccessor, AfterView
   writeValue(obj: any): void {
     if (obj) {
       this.value = obj;
+      this.validate();
     }
   }
 
@@ -74,15 +76,17 @@ export class QuestionControlComponent implements ControlValueAccessor, AfterView
     throw new Error('Method not implemented.');
   }
 
-  validate(control: AbstractControl): ValidationErrors {
-
-    return (this.val.label)
-      ? null
-      : {
+  validate(control: AbstractControl = null): ValidationErrors {
+    if (this.val.label) {
+      return null;
+    }
+    else {
+      return {
         jsonParseError: {
-          valid: false,
-        },
-      };
+          valid: false
+        }
+      }
+    }
   }
 
   registerOnValidatorChange?(fn: () => void): void {

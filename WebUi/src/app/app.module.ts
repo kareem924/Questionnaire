@@ -11,6 +11,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { CoreModule } from './@core/core.module';
 import { ThemeModule } from './@theme/theme.module';
 import { AppComponent } from './app.component';
+import { BlockUIModule } from 'ng-block-ui';
+import { BlockUIHttpModule } from 'ng-block-ui/http';
 import { AppRoutingModule } from './app-routing.module';
 import {
 
@@ -32,6 +34,8 @@ import {FormsModule} from '@angular/forms';
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    BlockUIModule.forRoot(),
+    BlockUIHttpModule.forRoot(),
     AppRoutingModule,
     NbSidebarModule.forRoot(),
     NbMenuModule.forRoot(),

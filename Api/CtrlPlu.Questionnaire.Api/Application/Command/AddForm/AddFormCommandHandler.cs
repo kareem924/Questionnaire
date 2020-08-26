@@ -7,10 +7,11 @@ using CtrlPlu.Questionnaire.Common.Core.UnitOFWork;
 using CtrlPlu.Questionnaire.Common.Cqrs;
 using CtrlPlu.Questionnaire.Core.Form.Entities;
 using CtrlPlu.Questionnaire.Core.Form.Repositories;
+using MediatR;
 
 namespace CtrlPlu.Questionnaire.Api.Application.Command.AddForm
 {
-    public class AddFormCommandHandler : ICommandHandler<AddFormCommand>
+    public class AddFormCommandHandler : IQueryHandler<AddFormCommand, int>
     {
         private readonly IFormRepository _formRepository;
         private readonly IUnitOfWork _unitOfWork;
@@ -21,14 +22,15 @@ namespace CtrlPlu.Questionnaire.Api.Application.Command.AddForm
             _unitOfWork = unitOfWork;
         }
 
-        public async Task Handle(AddFormCommand notification, CancellationToken cancellationToken)
+
+        public async Task<int> Handle(AddFormCommand request, CancellationToken cancellationToken)
         {
             var form = new Form(
-                notification.Sections.Single().Title,
-                notification.Sections.Single().Description);
-            if (notification.Sections != null)
+                request.Sections.FirstOrDefault().Title,
+                request.Sections.FirstOrDefault().Description);
+            if (request.Sections != null)
             {
-                var sections = notification.Sections.Select(section =>
+                var sections = request.Sections.Select(section =>
                 {
                     var addedSection = new Section(section.Title, section.Description);
                     var addedFields = section.Fields.Select(field =>
@@ -62,7 +64,7 @@ namespace CtrlPlu.Questionnaire.Api.Application.Command.AddForm
                 await _formRepository.AddAsync(form);
                 await _unitOfWork.SaveEntitiesAsync(cancellationToken);
             }
+            return form.Id;
         }
-
     }
 }

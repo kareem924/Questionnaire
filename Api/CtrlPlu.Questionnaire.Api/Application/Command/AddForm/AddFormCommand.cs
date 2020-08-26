@@ -4,13 +4,15 @@ using CtrlPlu.Questionnaire.Core.Form.Enums;
 
 namespace CtrlPlu.Questionnaire.Api.Application.Command.AddForm
 {
-    public class AddFormCommand : ICommand
+    public class AddFormCommand : IQuery<int>
     {
         public IEnumerable<SectionDto> Sections { get; set; }
     }
 
     public class SectionDto
     {
+        public int Id { get; set; }
+
         public string Title { get; set; }
 
         public string Description { get; set; }

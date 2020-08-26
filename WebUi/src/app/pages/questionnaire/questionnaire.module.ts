@@ -1,3 +1,4 @@
+import { BlockUIModule } from 'ng-block-ui';
 import { SliderRateComponent } from './generate-form/form-submission/controls/slider-rate/slider-rate.component';
 import { TimeComponent } from './generate-form/form-submission/controls/time/time.component';
 import { StarRateComponent } from './generate-form/form-submission/controls/star-rate/star-rate.component';
@@ -19,8 +20,9 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { FormSubmissionComponent } from './generate-form/form-submission/form-submission.component';
 import { ControlsComponent } from './generate-form/form-submission/controls/controls.component';
 import { InputComponent } from './generate-form/form-submission/controls/input/input.component';
-import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
-import {StarRatingModule} from 'angular-star-rating';
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
+import { StarRatingModule } from 'angular-star-rating';
+import { SuccessSubmissionComponent } from './generate-form/form-submission/success-submission/success-submission.component';
 
 const routes: Routes = [
   {
@@ -28,8 +30,12 @@ const routes: Routes = [
     component: GenerateFormComponent,
   },
   {
-    path: 'submit',
+    path: 'submit/:id',
     component: FormSubmissionComponent,
+  },
+  {
+    path: 'success',
+    component: SuccessSubmissionComponent,
   },
 ];
 
@@ -38,6 +44,7 @@ const routes: Routes = [
     CommonModule,
     DragDropModule,
     RouterModule.forChild(routes),
+    BlockUIModule.forRoot(),
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
@@ -58,6 +65,7 @@ const routes: Routes = [
     DropdownListComponent,
     RadioButtonComponent,
     StarRateComponent,
+    SuccessSubmissionComponent,
     TimeComponent,
     SliderRateComponent],
 })

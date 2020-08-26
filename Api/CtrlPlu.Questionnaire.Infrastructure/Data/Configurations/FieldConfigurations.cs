@@ -11,10 +11,7 @@ namespace CtrlPlu.Questionnaire.Infrastructure.Data.Configurations
             builder.Property(field => field.IsRequired).HasDefaultValue(false);
             builder.Property(field => field.Type).IsRequired();
             builder.Property(field => field.Label).IsRequired();
-            builder.HasMany(form => form.Submission)
-                .WithOne()
-                .IsRequired()
-                .Metadata.PrincipalToDependent.SetPropertyAccessMode(PropertyAccessMode.Field);
+            
             builder.HasMany(form => form.Options)
                 .WithOne()
                 .IsRequired()

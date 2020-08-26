@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { trigger, state, transition, animate, style } from '@angular/animations';
-import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormArray, ValidationErrors } from '@angular/forms';
 import { QuestionControl, CreateForm } from '../models/question-control.model';
 import { questionTypes } from '../models/question-type.enum';
 import { FormsService } from '../form.service';
 import { NbToastrService } from '@nebular/theme';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Router } from '@angular/router';
+import { BlockUI, NgBlockUI } from 'ng-block-ui';
 
 @Component({
   selector: 'ngx-generate-form',
@@ -29,6 +30,7 @@ export class GenerateFormComponent implements OnInit {
   state = "default";
   top = "202"
   selectedSectionIndex = 0;
+  @BlockUI() blockUI: NgBlockUI;
 
   constructor(private fb: FormBuilder,
     private formService: FormsService,
@@ -40,6 +42,7 @@ export class GenerateFormComponent implements OnInit {
     })
   }
   ngOnInit(): void {
+
   }
 
 
@@ -95,6 +98,42 @@ export class GenerateFormComponent implements OnInit {
   }
 
   submit() {
+    this.blockUI.start('Loading...');
+    console.log(this.generateFormFormGroup.value);
+    this.formService.Create(this.generateFormModel()).subscribe(() => {
+      this.blockUI.stop();
+      this.toastrService.success('Saved Successfuly.')
+    })
+  }
+  onComeIn($event: any) {
+    var target = $event.currentTarget;
+
+    var pElement = target.getBoundingClientRect().top;
+    // var pclassAttr = pElement.attributes.class;
+    let el = $event.srcElement.getBoundingClientRect().top;
+    if (this.state === 'default') {
+      this.state = 'default';
+      this.top = pElement + "px";
+    } else {
+      this.state = 'default';
+      this.top = pElement + "px";
+    }
+  }
+
+  drop(event: CdkDragDrop<any[]>, sectionIndex) {
+    moveItemInArray(this.sectionFields(sectionIndex).controls, event.previousIndex, event.currentIndex);
+  }
+
+  routeToSubmit() {
+    this.blockUI.start('Loading...');
+    this.formService.Create(this.generateFormModel()).subscribe((result) => {
+      this.blockUI.stop();
+      this.toastrService.success('Saved Successfuly.')
+      this.router.navigateByUrl(`/pages/questions/submit/${result}`);
+    })
+  }
+
+  generateFormModel(): CreateForm {
     console.log(this.generateFormFormGroup.value);
     const sections = [];
     this.generateFormFormGroup.value.sections.forEach(section => {
@@ -117,30 +156,22 @@ export class GenerateFormComponent implements OnInit {
     });
     const createModel = new CreateForm();
     createModel.sections = sections;
-    // this.formService.Create(createModel).subscribe(() => {
-    //   this.toastrService.success('Saved Successfuly.')
-    // })
-  }
-  onComeIn($event: any) {
-    var target = $event.currentTarget;
-
-    var pElement = target.getBoundingClientRect().top;
-    // var pclassAttr = pElement.attributes.class;
-    let el = $event.srcElement.getBoundingClientRect().top;
-    if (this.state === 'default') {
-      this.state = 'default';
-      this.top = pElement + "px";
-    } else {
-      this.state = 'default';
-      this.top = pElement + "px";
-    }
+    return createModel;
   }
 
-  drop(event: CdkDragDrop<any[]>, sectionIndex) {
-    moveItemInArray(this.sectionFields(sectionIndex).controls, event.previousIndex, event.currentIndex);
-  }
-
-  routeToSubmit() {
-    this.router.navigateByUrl('/pages/questions/submit');
-  }
+  getAllErrors(form: FormGroup | FormArray): { [key: string]: any; } | null {
+    let hasError = false;
+    const result = Object.keys(form.controls).reduce((acc, key) => {
+        const control = form.get(key);
+        const errors = (control instanceof FormGroup || control instanceof FormArray)
+            ? this.getAllErrors(control)
+            : control.errors;
+        if (errors) {
+            acc[key] = errors;
+            hasError = true;
+        }
+        return acc;
+    }, {} as { [key: string]: any; });
+    return hasError ? result : null;
+}
 }

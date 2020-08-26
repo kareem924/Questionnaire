@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using CtrlPlu.Questionnaire.Common.Cqrs;
@@ -44,7 +42,9 @@ namespace CtrlPlu.Questionnaire.Api.Application.Query.GetById
             {
                 Description = section.Description,
                 Title = section.Title,
-                Fields = section.Fields.Select(MapFromFieldToFieldDto)
+                Fields = section.Fields
+                    .OrderBy(field => field.Order)
+                    .Select(MapFromFieldToFieldDto)
             };
         }
 
@@ -56,16 +56,20 @@ namespace CtrlPlu.Questionnaire.Api.Application.Query.GetById
             }
             return new FieldDto
             {
+                Id = field.Id,
                 Type = field.Type,
                 PlaceHolder = field.PlaceHolder,
                 InputMask = field.InputMask,
                 IsRequired = field.IsRequired,
                 Label = field.Label,
-                FieldOptions = field.Options.Select(mapFromOptionValueToOptionValueDto)
+                RatingValue = MapFromRatingValueToRatingValueDto(field.Rating),
+                FieldOptions = field.Options
+                    .OrderBy(option => option.Order)
+                    .Select(MapFromOptionValueToOptionValueDto)
             };
         }
 
-        private FieldOptionDto mapFromOptionValueToOptionValueDto(FieldOptions fieldOption)
+        private FieldOptionDto MapFromOptionValueToOptionValueDto(FieldOptions fieldOption)
         {
             if (fieldOption == null)
             {
@@ -73,7 +77,23 @@ namespace CtrlPlu.Questionnaire.Api.Application.Query.GetById
             }
             return new FieldOptionDto
             {
-                Value = fieldOption.OptionValue
+                Value = fieldOption.OptionValue,
+                Id = fieldOption.Id
+            };
+        }
+
+        private RatingValueDto MapFromRatingValueToRatingValueDto(RatingValue rating)
+        {
+            if (rating == null)
+            {
+                return null;
+            }
+            return new RatingValueDto
+            {
+                ToLabel = rating.ToLabel,
+                From = rating.From,
+                FromLabel = rating.FromLabel,
+                To = rating.To
             };
         }
     }

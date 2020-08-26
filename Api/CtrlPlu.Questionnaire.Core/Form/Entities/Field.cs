@@ -8,7 +8,6 @@ namespace CtrlPlu.Questionnaire.Core.Form.Entities
 {
     public class Field : BaseEntity
     {
-        private List<Submission> _submission = new List<Submission>();
 
         private List<FieldOptions> _options = new List<FieldOptions>();
 
@@ -26,7 +25,6 @@ namespace CtrlPlu.Questionnaire.Core.Form.Entities
 
         public RatingValue Rating { get; private set; }
 
-        public IReadOnlyCollection<Submission> Submission => _submission.AsReadOnly();
 
         public IReadOnlyCollection<FieldOptions> Options => _options.AsReadOnly();
 
@@ -61,7 +59,7 @@ namespace CtrlPlu.Questionnaire.Core.Form.Entities
             PlaceHolder = placeHolder;
             Label = !string.IsNullOrWhiteSpace(label)
                 ? label
-                : throw new ArgumentNullException(nameof(Label));
+                : string.Empty;
             InputMask = inputMask;
             Order = order;
             Rating = rate;

@@ -22,7 +22,10 @@ namespace CtrlPlu.Questionnaire.Common.Core.Repository
 
         Task<ICollection<TEntity>> FindAllAsync(ISpecification<TEntity> specification);
 
-        Task<PagedResult<TEntity, IVM>> GetAllPagedAsync(ISpecification<TEntity> specification, QueryModel query);
+        Task<PagedResult<TEntity, IVM>> GetAllPagedAsync(
+            ISpecification<TEntity> specification,
+            QueryModel query,
+            Func<TEntity, IVM> func);
 
         TEntity Add(TEntity entity);
 
