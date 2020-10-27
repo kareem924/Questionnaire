@@ -1,4 +1,4 @@
-<mat-form-field style="width: 688px;">
+<mat-form-field style="width: 688px">
   <input
     *ngIf="question.controlType === 1"
     matInput
@@ -11,4 +11,7 @@
     [placeholder]="question.label"
     [(ngModel)]="value"
   ></textarea>
+  <mat-error *ngIf="control.hasError('required')">
+    Email is <strong>required</strong>
+  </mat-error>
 </mat-form-field>

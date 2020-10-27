@@ -76,12 +76,29 @@ export class FormSubmissionComponent implements OnInit {
     this.blockUI.start('Loading...');
     this.payLoad = this.form.getRawValue();
     console.log(this.payLoad)
+    console.log(this.testArray)
     const values = [];
     this.payLoad.formArray.forEach((element) => {
       console.log(element)
       for (var i in element) {
-        const value = { id: parseInt(i), value: String(element[i]) }
-        values.push(value);
+
+        const question = this.getQuestion(parseInt(i));
+        if (question.controlType === QuestionType.CheckBox ||
+          question.controlType === QuestionType.DropDown ||
+          question.controlType === QuestionType.MultipleChoice) {
+          const value = { id: parseInt(i), values: null }
+          if (Array.isArray(element[i])) {
+            value.values = element[i];
+          }
+          else {
+            value.values = [element[i]]
+          }
+          values.push(value);
+        }
+        else {
+          const value = { id: parseInt(i), value: element[i] }
+          values.push(value);
+        }
       }
     });
     const submitModel = new SubmitModel();
@@ -95,7 +112,6 @@ export class FormSubmissionComponent implements OnInit {
         this.router.navigateByUrl(`/pages/questions/success`);
       }, 400);
     })
-
   }
 
   get testArray() {

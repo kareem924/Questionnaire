@@ -23,6 +23,12 @@ import { InputComponent } from './generate-form/form-submission/controls/input/i
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { StarRatingModule } from 'angular-star-rating';
 import { SuccessSubmissionComponent } from './generate-form/form-submission/success-submission/success-submission.component';
+import { FormResultComponent } from './form-result/form-result.component';
+import { NgxEchartsModule } from 'ngx-echarts';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { ChartModule } from 'angular2-chartjs';
+import { NbCardModule } from '@nebular/theme';
+import { ResultPieChartComponent } from './form-result/result-pie-chart/result-pie-chart.component';
 
 const routes: Routes = [
   {
@@ -32,6 +38,10 @@ const routes: Routes = [
   {
     path: 'submit/:id',
     component: FormSubmissionComponent,
+  },
+  {
+    path: 'result/:id',
+    component: FormResultComponent,
   },
   {
     path: 'success',
@@ -49,6 +59,10 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     FlexLayoutModule,
+    NgxEchartsModule,
+    NgxChartsModule,
+    ChartModule,
+    NbCardModule,
     NgxMaterialTimepickerModule,
     StarRatingModule.forRoot(),
   ],
@@ -67,6 +81,8 @@ const routes: Routes = [
     StarRateComponent,
     SuccessSubmissionComponent,
     TimeComponent,
-    SliderRateComponent],
+    SliderRateComponent,
+    FormResultComponent,
+    ResultPieChartComponent],
 })
 export class QuestionnaireModule { }

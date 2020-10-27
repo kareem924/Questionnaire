@@ -1,6 +1,7 @@
-import { ControlValueAccessor, NG_VALUE_ACCESSOR, NG_VALIDATORS, AbstractControl, ValidationErrors, Validator } from '@angular/forms';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR, NG_VALIDATORS, AbstractControl, ValidationErrors, Validator, FormControl } from '@angular/forms';
 import { QuestionBase } from './../../../../models/question-base';
 import { Component, OnInit, Input, forwardRef } from '@angular/core';
+import { ErrorStateMatcher } from '../error-state-matcher';
 
 @Component({
   providers: [
@@ -22,16 +23,20 @@ import { Component, OnInit, Input, forwardRef } from '@angular/core';
 export class InputComponent implements OnInit, ControlValueAccessor, Validator {
 
   @Input() question: QuestionBase;
+  @Input() control:FormControl;
   @Input('value') val: string;
   get value() {
     return this.val;
   }
   set value(val) {
     console.log(val);
+    console.log(this.control.hasError('required'));
     this.val = val;
     this.onChange(val);
     this.onTouched();
   }
+  matcher = new ErrorStateMatcher();
+
   constructor() { }
 
   ngOnInit() {

@@ -10,11 +10,13 @@
             *ngSwitchCase="controlTypes.TextBox"
             [formControlName]="question.key"
             [question]="question"
+            [control]="getControl(question.key)"
           ></app-input>
           <app-input
             *ngSwitchCase="controlTypes.TextArea"
             [formControlName]="question.key"
             [question]="question"
+            [control]="getControl(question.key)"
           ></app-input>
           <app-radio-button
             *ngSwitchCase="controlTypes.MultipleChoice"

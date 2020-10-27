@@ -1,47 +1,61 @@
 <block-ui>
-  <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <mat-horizontal-stepper formArrayName="formArray" *ngIf="testArray">
-      <div *ngFor="let control of testArray.controls; let i = index">
-        <mat-step formGroupName="{{ i }}" [stepControl]="formArray?.get([i])">
-          <div fxLayout="column" fxLayoutAlign="center center">
-            <div class="section-container">
-              <div class="section-header">
+  <form [formGroup]="form"
+    (ngSubmit)="onSubmit()">
+    <mat-horizontal-stepper
+      formArrayName="formArray"
+      *ngIf="testArray">
+      <div
+        *ngFor="let control of testArray.controls; let i = index">
+        <mat-step
+          formGroupName="{{ i }}"
+          [stepControl]="formArray?.get([i])">
+          <div fxLayout="column"
+            fxLayoutAlign="center center">
+            <div
+              class="section-container">
+              <div
+                class="section-header">
                 <div fxLayout="column">
-                  <div class="section-title">
+                  <div
+                    class="section-title">
                     {{ getSection(i).name }}
                   </div>
-                  <div class="section-desc">test test test test test</div>
+                  <div
+                    class="section-desc">
+                    test test test test
+                    test</div>
                 </div>
               </div>
             </div>
           </div>
-          <div *ngFor="let question of control.controls | keyvalue">
+          <div
+            *ngFor="let question of control.controls | keyvalue">
             <ngx-controls
               fxLayout="column"
               fxLayoutAlign="center center"
               [form]="control"
-              [question]="getQuestion(question.key)"
-            ></ngx-controls>
+              [question]="getQuestion(question.key)">
+            </ngx-controls>
           </div>
-          <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="2%">
-            <button mat-raised-button *ngIf="i > 0" matStepperPrevious>
+          <div fxLayout="row"
+            fxLayoutAlign="center center"
+            fxLayoutGap="2%">
+            <button mat-raised-button
+              *ngIf="i > 0"
+              matStepperPrevious>
               Back
             </button>
-            <button
-              mat-raised-button
+            <button mat-raised-button
               matStepperNext
               type="button"
-              *ngIf="i !== testArray.controls.length - 1"
-            >
+              *ngIf="i !== testArray.controls.length - 1">
               Next
             </button>
-            <button
-              mat-raised-button
+            <button mat-raised-button
               color="primary"
               *ngIf="i === testArray.controls.length - 1"
               matStepperNext
-              type="submit"
-            >
+              type="submit">
               Submit
             </button>
           </div>

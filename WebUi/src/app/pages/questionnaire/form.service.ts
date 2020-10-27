@@ -28,4 +28,11 @@ export class FormsService {
     return this.http.post(API_SUBMIT_URL, model);
   }
 
+  GetFormSummary(id: string): Observable<any> {
+    return this.http.get(`${API_SUBMIT_URL}/summary`, {
+      params: {
+        formId: id
+      }
+    });
+  }
 }

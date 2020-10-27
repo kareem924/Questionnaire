@@ -3,13 +3,22 @@
     "tslint.enable": false,
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "[html]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
+        "editor.defaultFormatter": "vscode.html-language-features"
     },
     "[css]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "html.format.wrapLineLength": 40,
     "[scss]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-    }
+        "editor.defaultFormatter": "HookyQR.beautify"
+    },
+    "editor.fontFamily": "JetBrains Mono, 'Courier New', monospace",
+    "editor.fontSize": 16,
+  "editor.fontWeight": "300",
+  "editor.letterSpacing": 1.2,
+  "editor.lineHeight": 22,
+"editor.fontLigatures": true,
+"[typescript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+},
 }

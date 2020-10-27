@@ -1,0 +1,41 @@
+<div fxLayout="column"
+  fxLayoutAlign="center center"
+  *ngIf="formSummary">
+  <div
+    *ngFor="let summary of formSummary.answersSummary"
+    fxLayout="row"
+    fxLayoutAlign="center center">
+    <nb-card style="width: 750px;"
+      *ngIf="summary.fieldType === 3 || summary.fieldType === 4 || summary.fieldType === 5">
+      <nb-card-header>{{summary.label}}
+      </nb-card-header>
+      <nb-card-body>
+        <app-result-pie-chart
+          [labels]="summary.multiValueSummary.answers"
+          [values]="summary.multiValueSummary.answerCount">
+        </app-result-pie-chart>
+      </nb-card-body>
+    </nb-card>
+    <nb-card class="list-card"
+      style="width: 750px;" *ngIf="summary.fieldType === 1 || 
+      summary.fieldType === 2 || 
+      summary.fieldType === 6 || 
+      summary.fieldType === 7 ||
+      summary.fieldType === 8 ||
+      summary.fieldType === 9  ||
+      summary.fieldType === 10">
+      <nb-card-header>{{summary.label}}
+      </nb-card-header>
+      <nb-card-body>
+        <mat-list role="list" style="max-height: 150px; overflow-y: auto;">
+          <mat-list-item role="listitem"
+            *ngFor="let value of summary.valueSummary">
+            {{ value }}</mat-list-item>
+
+        </mat-list>
+      </nb-card-body>
+    </nb-card>
+  </div>
+
+
+</div>

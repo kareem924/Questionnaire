@@ -1,15 +1,15 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { OnDestroy } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { NbThemeService } from '@nebular/theme';
 
 @Component({
-  selector: 'ngx-chartjs-pie',
-  template: `
-    <chart type="pie" [data]="data" [options]="options"></chart>
-  `,
+  selector: 'app-result-pie-chart',
+  templateUrl: './result-pie-chart.component.html',
+  styleUrls: ['./result-pie-chart.component.scss']
 })
-export class ChartjsPieComponent implements OnDestroy,OnInit  {
-  @Input() labels: string[];
-  @Input() values: any[];
+export class ResultPieChartComponent implements OnInit, OnDestroy {
+  @Input() labels: any;
+  @Input() values: any;
   data: any;
   options: any;
   themeSubscription: any;

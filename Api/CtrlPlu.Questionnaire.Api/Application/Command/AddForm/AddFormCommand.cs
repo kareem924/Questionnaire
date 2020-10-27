@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
-using CtrlPlu.Questionnaire.Common.Cqrs;
+﻿using CtrlPlu.Questionnaire.Common.Cqrs;
 using CtrlPlu.Questionnaire.Core.Form.Enums;
+using System.Collections.Generic;
 
 namespace CtrlPlu.Questionnaire.Api.Application.Command.AddForm
 {

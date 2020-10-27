@@ -23,16 +23,16 @@ namespace CtrlPlu.Questionnaire.Api.Controllers
         [HttpGet]
         public async Task<IActionResult> Get([FromQuery] GetAllFormsQuery query)
         {
-            var timeSlot = await _mediator.Send(query);
-            return Ok(timeSlot);
+            var result = await _mediator.Send(query);
+            return Ok(result);
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
             var query = new GetFormByIdQuery { Id = id };
-            var timeSlot = await _mediator.Send(query);
-            return Ok(timeSlot);
+            var result = await _mediator.Send(query);
+            return Ok(result);
         }
 
         [HttpPost]

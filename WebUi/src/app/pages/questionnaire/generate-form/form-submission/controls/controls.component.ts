@@ -12,7 +12,6 @@ export class ControlsComponent implements OnInit {
 
   @Input() question: QuestionBase;
   @Input() form: FormGroup;
-  get isValid() { return this.form.controls[this.question.key].valid; }
   controlTypes = QuestionType;
   constructor() { }
 
@@ -20,5 +19,8 @@ export class ControlsComponent implements OnInit {
 
   }
 
-
+  getControl(key: string) {
+    const control = this.form.controls[key];
+    return control;
+  }
 }
